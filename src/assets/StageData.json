@@ -1,0 +1,17 @@
+{
+    "FirstStage": [
+        [
+            {
+                "character": "zonbi",
+                "formula": "minus",
+                "num": 500
+            },
+            {
+                "character": "zonbi",
+                "formula": "minus",
+                "num": 500
+            }
+        ],
+        []
+    ]
+}

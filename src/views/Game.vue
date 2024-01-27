@@ -1,12 +1,14 @@
 <template>
-<div id="MainCanvas">
-  <img src="@/assets/tou.png">
+  <div id="MainCanvas">
+    <div id="Base">
+      <Tower :num=0 />
+    </div>
 
-</div>
+  </div>
 </template>
 
-<script>
-
+<script setup>
+import Tower from "@/components/tower.vue"
 </script>
 
 <style scoped>
