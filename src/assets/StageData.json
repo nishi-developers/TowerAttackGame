@@ -26,6 +26,55 @@
                 "formula": "+",
                 "num": 500
             }
+        ],
+        [
+            {
+                "character": "zombie",
+                "formula": "-",
+                "num": 500
+            },
+            {
+                "character": "zombie",
+                "formula": "-",
+                "num": 500
+            },
+            {
+                "character": "witch",
+                "formula": "-",
+                "num": 500
+            },
+            {
+                "character": "portion",
+                "formula": "+",
+                "num": 500
+            }
+        ],
+        [
+            {
+                "character": "none"
+            }
+        ],
+        [
+            {
+                "character": "zombie",
+                "formula": "-",
+                "num": 500
+            },
+            {
+                "character": "zombie",
+                "formula": "-",
+                "num": 500
+            },
+            {
+                "character": "witch",
+                "formula": "-",
+                "num": 500
+            },
+            {
+                "character": "portion",
+                "formula": "+",
+                "num": 500
+            }
         ]
     ]
 }

@@ -1,23 +1,24 @@
 <template>
-    <div class="tower top">
-        <img class="towerImg top" src="@/assets/tower/tower-top.svg">
-        <br class="hub">
-    </div>
-    <div class="tower middle" v-if="TowerData[0].character != 'none'" v-for="part in TowerData" :key="part">
-        <img class="towerImg middle" src="@/assets/tower/tower-middle.svg">
-        <Character :Data=part.character />
-        <p class="text">{{ part.formula }}{{ part.num }}</p>
-        <br class="hub">
-    </div>
-    <div class="tower bottom">
-        <img class="towerImg bottom" src="@/assets/tower/tower-bottom.svg">
+    <div class="towers">
+        <div class="tower top">
+            <img class="towerImg top" src="@/assets/tower/tower-top.svg">
+            <br class="hub">
+        </div>
+        <div class="tower middle" v-if="props.Data[0].character != 'none'" v-for="part in props.Data" :key="part">
+            <img class="towerImg middle" src="@/assets/tower/tower-middle.svg">
+            <Character :Data=part.character />
+            <p class="text">{{ part.formula }}{{ part.num }}</p>
+            <br class="hub">
+        </div>
+        <div class="tower bottom">
+            <img class="towerImg bottom" src="@/assets/tower/tower-bottom.svg">
+        </div>
     </div>
 </template>
 <script setup>
 // import { ref } from 'vue'
 import Character from "@/components/character.vue"
 const props = defineProps(["Data"])
-const TowerData = props.Data
 // const TowerNum = ref(props.Data.length)
 </script>
 <style scoped>
