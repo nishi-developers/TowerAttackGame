@@ -2,16 +2,30 @@
     "FirstStage": [
         [
             {
-                "character": "zonbi",
-                "formula": "minus",
+                "character": "none"
+            }
+        ],
+        [
+            {
+                "character": "zombie",
+                "formula": "-",
                 "num": 500
             },
             {
-                "character": "zonbi",
-                "formula": "minus",
+                "character": "zombie",
+                "formula": "-",
+                "num": 500
+            },
+            {
+                "character": "witch",
+                "formula": "-",
+                "num": 500
+            },
+            {
+                "character": "portion",
+                "formula": "+",
                 "num": 500
             }
-        ],
-        []
+        ]
     ]
 }

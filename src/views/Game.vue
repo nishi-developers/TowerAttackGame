@@ -1,14 +1,20 @@
 <template>
   <div id="MainCanvas">
     <div id="Base">
-      <Tower :num=0 />
+      <Tower :Data=Tower1 />
     </div>
 
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
 import Tower from "@/components/tower.vue"
+import Stage from "@/assets/StageData.json"
+
+const Tower1 = ref("")
+Tower1.value = Stage["FirstStage"][1]
 </script>
 
 <style scoped>
@@ -17,7 +23,7 @@ import Tower from "@/components/tower.vue"
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: gray;
+  background-color: rgb(221, 221, 221);
 }
 </style>
 <style>
