@@ -14,8 +14,6 @@
 import { ref } from 'vue'
 
 import Tower from "@/components/tower.vue"
-import T from "@/components/t.vue"
-
 import Stage from "@/assets/StageData.json"
 
 const Tower1 = ref("")
