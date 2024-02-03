@@ -2,22 +2,22 @@
     "FirstStage": [
         [
             {
-                "character": "none"
+                "character": "noneTower"
             }
         ],
         [
             {
-                "character": "-",
-                "formula": "",
-                "num": ""
+                "character": "witch",
+                "formula": "÷",
+                "num": "2"
+            },
+            {
+                "character": "drink",
+                "formula": "×",
+                "num": "2"
             },
             {
                 "character": "zombie",
-                "formula": "-",
-                "num": 500
-            },
-            {
-                "character": "witch",
                 "formula": "-",
                 "num": 500
             },
@@ -35,12 +35,12 @@
             },
             {
                 "character": "dragon",
-                "formula": "-",
+                "formula": "×",
                 "num": 500
             },
             {
                 "character": "witch",
-                "formula": "-",
+                "formula": "÷",
                 "num": 500
             },
             {

@@ -1,6 +1,12 @@
 <template>
-  <button type="button" @click="nextStep">nextStep</button>
+  <!-- <button type="button" @click="nextStep">nextStep</button> -->
   <div id="MainCanvas">
+    <div id="GameStart" class="overlay" v-if="isGameStart">
+      <p>GameStart</p>
+    </div>
+    <div id="GameOver" class="overlay" v-if="isGameOver">
+      <p>GameOver</p>
+    </div>
     <div id="hero">
       <Character :CharaData="{ 'character': 'hero', 'formula': '', 'num': HP }" />
       <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
@@ -12,17 +18,19 @@
 </template>
 
 <script setup>
-import { nextTick, ref } from 'vue'
+import { ref } from 'vue'
 import Character from "@/components/character.vue"
 import Tower from "@/components/tower.vue"
 import Stages from "@/assets/StageData.json"
 const Stage = Stages["FirstStage"]
-const HP = ref(0)
+const HP = ref(100)
+const isGameStart = ref(false)
+const isGameOver = ref(false)
 // keyによる再描画
 // 2つの塔にkey属性を追加し、そのkeyを更新することで、塔コンポーネントを明示的に再描画する
 // https://qiita.com/fuminopen/items/34eb14d6e74c3a9fcbf0
-const key1 = ref(0)
-const key2 = ref(0)
+const key1 = ref(0) // 0 or 1
+const key2 = ref(2) // 2 or 3
 
 const TowerNum = ref(0) //何番目の塔が描画されているか
 const Tower1 = ref("")
@@ -38,13 +46,48 @@ function nextStep() { //次の塔を描画するように切り替え
 }
 
 function ClickChara(Num) {
-  Stage[TowerNum.value + 1][Num] = { "character": "-", "formula": "", "num": "" },
-    key2.value = key2.value ? 0 : 1
+  Calc(Stage[TowerNum.value + 1][Num]["num"], Stage[TowerNum.value + 1][Num]["formula"])
+  Stage[TowerNum.value + 1][Num] = { "character": "", "formula": "", "num": "" } //ステージ情報からキャラを削除
+  key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
+  checkLive()
+  // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
+  let count = 0
+  for (let i = 0; i < Stage[TowerNum.value + 1].length; i++) {
+    if (Stage[TowerNum.value + 1][i]["character"] != "") {
+      count++
+      break
+    }
+  }
+  if (count == 0) {
+    nextStep()
+  }
+}
+function checkLive() {
+  if (HP.value <= 0) {
+    isGameOver.value = true
+  }
+}
+function Calc(Num, formula) { //プレイヤーのHPを計算&適用
+  switch (formula) {
+    case "+":
+      HP.value = HP.value + Num
+      break
+    case "-":
+      HP.value = HP.value - Num
+      break
+    case "×":
+      HP.value = HP.value * Num
+      break
+    case "÷":
+      HP.value = HP.value / Num
+      HP.value = Math.round(HP.value / Num)
+  }
 }
 
 </script>
 
 <style scoped>
+
 #MainCanvas {
   height: 100%;
   width: 100%;
@@ -54,6 +97,22 @@ function ClickChara(Num) {
   display: flex;
   align-items: flex-end;
   position: absolute;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay p {
+  font-size: 5rem;
+  color: red;
 }
 
 #spacer {
@@ -88,5 +147,14 @@ div#app {
   left: 50%;
   transform: translate(-50%, 0);
   font-size: 2rem;
+}
+
+/* Cursor */
+* {
+  cursor: url("@/assets/cursor/cursor.png"), auto;
+}
+.tower.middle *:active{
+  cursor: url("@/assets/cursor/click.png"), auto;
+
 }
 </style> 

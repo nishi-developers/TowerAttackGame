@@ -4,7 +4,7 @@
             <img class="towerImg top" src="@/assets/tower/tower-top.svg">
             <br class="hub">
         </div>
-        <div @click="Move(n-1)" class="tower middle" v-if="props.TowerData[0].character != 'none'"
+        <div @click="Move(n-1)" class="tower middle" v-if="props.TowerData[0].character != 'noneTower'"
             v-for="n in props.TowerData.length" :key="n">
             <img class="towerImg middle" src="@/assets/tower/tower-middle.svg">
             <Character :CharaData=props.TowerData[n-1] /> <!--キャラクターを描画 子コンポーネントにこの部分のキャラの構成要素を送信-->
