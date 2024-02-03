@@ -4,12 +4,18 @@
             <img class="towerImg top" src="@/assets/tower/tower-top.svg">
             <br class="hub">
         </div>
-        <div onclick="console.log('aaaaa')" class="tower middle" v-if="props.Data[0].character != 'none'"
+        <div @click="Move(n-1)" class="tower middle" v-if="props.Data[0].character != 'none'"
+            v-for="n in props.Data.length" :key="n">
+            <img class="towerImg middle" src="@/assets/tower/tower-middle.svg">
+            <Character :Data=props.Data[n-1] />
+            <br class="hub">
+        </div>
+        <!-- <div onclick="Move(part)" class="tower middle" v-if="props.Data[0].character != 'none'"
             v-for="part in props.Data" :key="part">
             <img class="towerImg middle" src="@/assets/tower/tower-middle.svg">
             <Character :Data=part />
             <br class="hub">
-        </div>
+        </div> -->
         <div class="tower bottom">
             <img class="towerImg bottom" src="@/assets/tower/tower-bottom.svg">
         </div>
@@ -19,7 +25,11 @@
 // import { ref } from 'vue'
 import Character from "@/components/character.vue"
 const props = defineProps(["Data"])
-// const TowerNum = ref(props.Data.length)
+const emit = defineEmits(["eventEmit"])
+function Move(parts) {
+    // console.log(parts)
+    emit("eventEmit",parts)
+}
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');

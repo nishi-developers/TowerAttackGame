@@ -2,11 +2,11 @@
   <button type="button" @click="nextStep">nextStep</button>
   <div id="MainCanvas">
     <div id="hero">
-      <Character :Data="{ 'character': 'hero', 'formula': '', 'num': HP }" />
+      <Character :Data="{ 'character': 'hero', 'formula': '', 'num': HP }"/>
     </div>
-    <Tower :Data=Tower1 />
+    <Tower :Data=Tower1  @eventEmit="CharaUpdata" />
     <div id="spacer"></div>
-    <Tower :Data=Tower2 />
+    <Tower :Data=Tower2  @eventEmit="CharaUpdata" />
   </div>
 </template>
 
@@ -29,6 +29,11 @@ function nextStep() { //次の塔を描画するように切り替え
   TowerNum.value++
   Tower1.value = Stage["FirstStage"][TowerNum.value]
   Tower2.value = Stage["FirstStage"][TowerNum.value + 1]
+}
+
+function CharaUpdata(data) {
+  console.log(data);
+  console.log("aaaa");
 }
 
 </script>
@@ -57,7 +62,7 @@ div#app {
   width: 100%;
 }
 
-#hero{
+#hero {
   position: absolute;
   bottom: 20px;
   left: 30px;
