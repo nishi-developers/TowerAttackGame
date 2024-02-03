@@ -7,9 +7,9 @@
         ],
         [
             {
-                "character": "zombie",
-                "formula": "-",
-                "num": 500
+                "character": "-",
+                "formula": "",
+                "num": ""
             },
             {
                 "character": "zombie",

@@ -4,10 +4,10 @@
             <img class="towerImg top" src="@/assets/tower/tower-top.svg">
             <br class="hub">
         </div>
-        <div class="tower middle" v-if="props.Data[0].character != 'none'" v-for="part in props.Data" :key="part">
+        <div onclick="console.log('aaaaa')" class="tower middle" v-if="props.Data[0].character != 'none'"
+            v-for="part in props.Data" :key="part">
             <img class="towerImg middle" src="@/assets/tower/tower-middle.svg">
-            <Character :Data=part.character />
-            <p class="text">{{ part.formula }}{{ part.num }}</p>
+            <Character :Data=part />
             <br class="hub">
         </div>
         <div class="tower bottom">
@@ -33,25 +33,18 @@ const props = defineProps(["Data"])
     width: 150px;
     margin-bottom: -4px;
 }
-
-.tower .text {
-
-    font-family: "Bungee Spice", sans-serif;
-    font-size: 1.5rem;
-    position: absolute;
-    z-index: 10;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-
-}
 </style>
 <style>
-.chara {
-    position: absolute;
-    width: 80px;
+.tower.middle .chara.npc {
     top: 5px;
     left: 50%;
     transform: translate(-50%, 0);
+}
+
+.tower.middle .text.npc {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 1.5rem;
 }
 </style>
