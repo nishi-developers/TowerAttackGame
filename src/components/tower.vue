@@ -4,31 +4,22 @@
             <img class="towerImg top" src="@/assets/tower/tower-top.svg">
             <br class="hub">
         </div>
-        <div @click="Move(n-1)" class="tower middle" v-if="props.Data[0].character != 'none'"
-            v-for="n in props.Data.length" :key="n">
+        <div @click="Move(n-1)" class="tower middle" v-if="props.TowerData[0].character != 'none'"
+            v-for="n in props.TowerData.length" :key="n">
             <img class="towerImg middle" src="@/assets/tower/tower-middle.svg">
-            <Character :Data=props.Data[n-1] />
-            <br class="hub">
+            <Character :CharaData=props.TowerData[n-1] /> <!--キャラクターを描画 子コンポーネントにこの部分のキャラの構成要素を送信-->
         </div>
-        <!-- <div onclick="Move(part)" class="tower middle" v-if="props.Data[0].character != 'none'"
-            v-for="part in props.Data" :key="part">
-            <img class="towerImg middle" src="@/assets/tower/tower-middle.svg">
-            <Character :Data=part />
-            <br class="hub">
-        </div> -->
         <div class="tower bottom">
             <img class="towerImg bottom" src="@/assets/tower/tower-bottom.svg">
         </div>
     </div>
 </template>
 <script setup>
-// import { ref } from 'vue'
 import Character from "@/components/character.vue"
-const props = defineProps(["Data"])
-const emit = defineEmits(["eventEmit"])
-function Move(parts) {
-    // console.log(parts)
-    emit("eventEmit",parts)
+const props = defineProps(["TowerData"]) //親コンポーネントから1本の塔の構成データを取得
+const emit = defineEmits(["clickTower"]) //親コンポーネントから返答用の要素を取得
+function Move(parts) { // タワーのクリックした位置を親コンポーネントに送信
+    emit("clickTower",parts)
 }
 </script>
 <style scoped>
