@@ -2,7 +2,9 @@
   <!-- <button type="button" @click="nextStep">nextStep</button> -->
   <div id="MainCanvas">
     <div id="GameStart" class="overlay" v-if="isGameStart">
-      <p>GameStart</p>
+      <div id="startButton" class="click" @click="gameStart()">
+        <p>GameStart</p>
+      </div>
     </div>
     <div id="GameOver" class="overlay" v-if="isGameOver">
       <p>GameOver</p>
@@ -24,7 +26,7 @@ import Tower from "@/components/tower.vue"
 import Stages from "@/assets/StageData.json"
 const Stage = Stages["FirstStage"]
 const HP = ref(100)
-const isGameStart = ref(false)
+const isGameStart = ref(true)
 const isGameOver = ref(false)
 // keyによる再描画
 // 2つの塔にkey属性を追加し、そのkeyを更新することで、塔コンポーネントを明示的に再描画する
@@ -38,6 +40,10 @@ const Tower2 = ref("")
 
 Tower1.value = Stage[TowerNum.value]
 Tower2.value = Stage[TowerNum.value + 1]
+
+function gameStart() {
+  isGameStart.value = false
+}
 
 function nextStep() { //次の塔を描画するように切り替え
   TowerNum.value++
@@ -87,7 +93,6 @@ function Calc(Num, formula) { //プレイヤーのHPを計算&適用
 </script>
 
 <style scoped>
-
 #MainCanvas {
   height: 100%;
   width: 100%;
@@ -112,7 +117,24 @@ function Calc(Num, formula) { //プレイヤーのHPを計算&適用
 
 .overlay p {
   font-size: 5rem;
-  color: red;
+}
+
+#startButton {
+  background-color: rgb(70, 196, 255);
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: red;
+  border-radius: 8px;
+  height: 120px;
+  width: 400px;
+  position: relative;
+}
+
+#startButton p {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
 }
 
 #spacer {
@@ -153,8 +175,8 @@ div#app {
 * {
   cursor: url("@/assets/cursor/cursor.png"), auto;
 }
-.tower.middle *:active{
-  cursor: url("@/assets/cursor/click.png"), auto;
 
+.click *:active {
+  cursor: url("@/assets/cursor/click.png"), auto;
 }
 </style> 
