@@ -1,58 +1,61 @@
 {
-    "FirstStage": [
-        [
-            {
-                "character": "noneTower"
-            }
-        ],
-        [
-            {
-                "character": "witch",
-                "formula": "÷",
-                "num": "2"
-            },
-            {
-                "character": "drink",
-                "formula": "×",
-                "num": "2"
-            },
-            {
-                "character": "zombie",
-                "formula": "-",
-                "num": 500
-            },
-            {
-                "character": "portion",
-                "formula": "+",
-                "num": 500
-            }
-        ],
-        [
-            {
-                "character": "dragon",
-                "formula": "-",
-                "num": 500
-            },
-            {
-                "character": "dragon",
-                "formula": "×",
-                "num": 500
-            },
-            {
-                "character": "witch",
-                "formula": "÷",
-                "num": 500
-            },
-            {
-                "character": "witch",
-                "formula": "-",
-                "num": 500
-            },
-            {
-                "character": "portion",
-                "formula": "+",
-                "num": 500
-            }
+    "FirstStage": {
+        "background":"Mounten1.jpg",
+        "Stage": [
+            [
+                {
+                    "character": "noneTower"
+                }
+            ],
+            [
+                {
+                    "character": "witch",
+                    "formula": "÷",
+                    "num": "2"
+                },
+                {
+                    "character": "drink",
+                    "formula": "×",
+                    "num": "2"
+                },
+                {
+                    "character": "zombie",
+                    "formula": "-",
+                    "num": 500
+                },
+                {
+                    "character": "portion",
+                    "formula": "+",
+                    "num": 500
+                }
+            ],
+            [
+                {
+                    "character": "dragon",
+                    "formula": "-",
+                    "num": 500
+                },
+                {
+                    "character": "dragon",
+                    "formula": "×",
+                    "num": 500
+                },
+                {
+                    "character": "witch",
+                    "formula": "÷",
+                    "num": 500
+                },
+                {
+                    "character": "witch",
+                    "formula": "-",
+                    "num": 500
+                },
+                {
+                    "character": "portion",
+                    "formula": "+",
+                    "num": 500
+                }
+            ]
         ]
-    ]
+    }
 }

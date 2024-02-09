@@ -1,21 +1,21 @@
 <template>
   <!-- <button type="button" @click="nextStep">nextStep</button> -->
-  <div id="MainCanvas">
-    <div id="GameStart" class="overlay" v-if="isGameStart">
+  <div id="MainCanvas" :style="{'background-image': BackgroundImage}">
+    <div id="GameStart" class="overlay" v-if=" isGameStart ">
       <div id="startButton" class="click" @click="gameStart()">
         <p>GameStart</p>
       </div>
     </div>
-    <div id="GameOver" class="overlay" v-if="isGameOver">
+    <div id="GameOver" class="overlay" v-if=" isGameOver ">
       <p>GameOver</p>
     </div>
     <div id="hero">
-      <Character :CharaData="{ 'character': 'hero', 'formula': '', 'num': HP }" />
+      <Character :CharaData=" { 'character': 'hero', 'formula': '', 'num': HP } " />
       <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
     </div>
-    <Tower :TowerData=Tower1 :key="key1" /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
+    <Tower :TowerData= Tower1  :key=" key1 " /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
     <div id="spacer"></div>
-    <Tower :TowerData=Tower2 @clickTower="ClickChara" :key="key2" /> <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
+    <Tower :TowerData= Tower2  @clickTower=" ClickChara " :key=" key2 " /> <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
   </div>
 </template>
 
@@ -24,7 +24,8 @@ import { ref } from 'vue'
 import Character from "@/components/character.vue"
 import Tower from "@/components/tower.vue"
 import Stages from "@/assets/StageData.json"
-const Stage = Stages["FirstStage"]
+const Stage = Stages["FirstStage"]["Stage"]
+const BackgroundImage = ref("url(/src/assets/background/" + Stages["FirstStage"]["background"]+")")
 const HP = ref(100)
 const isGameStart = ref(true)
 const isGameOver = ref(false)
@@ -98,7 +99,7 @@ function Calc(Num, formula) { //プレイヤーのHPを計算&適用
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: rgb(221, 221, 221);
+  /* background-color: rgb(221, 221, 221); */
   display: flex;
   align-items: flex-end;
   position: absolute;
