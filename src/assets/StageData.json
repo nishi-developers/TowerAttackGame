@@ -12,49 +12,49 @@
                 {
                     "character": "witch",
                     "formula": "÷",
-                    "num": "2"
+                    "power": "2"
                 },
                 {
                     "character": "drink",
                     "formula": "×",
-                    "num": "2"
+                    "power": "2"
                 },
                 {
                     "character": "zombie",
                     "formula": "-",
-                    "num": 500
+                    "power": 500
                 },
                 {
                     "character": "portion",
                     "formula": "+",
-                    "num": 500
+                    "power": 500
                 }
             ],
             [
                 {
                     "character": "dragon",
                     "formula": "-",
-                    "num": 500
+                    "power": 500
                 },
                 {
                     "character": "dragon",
                     "formula": "×",
-                    "num": 500
+                    "power": 500
                 },
                 {
                     "character": "witch",
                     "formula": "÷",
-                    "num": 500
+                    "power": 500
                 },
                 {
                     "character": "witch",
                     "formula": "-",
-                    "num": 500
+                    "power": 500
                 },
                 {
                     "character": "portion",
                     "formula": "+",
-                    "num": 500
+                    "power": 500
                 }
             ]
         ]

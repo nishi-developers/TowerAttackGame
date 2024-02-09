@@ -3,16 +3,19 @@
   <div id="MainCanvas" :style="{
     'background-image': 'url(/src/assets/background/' + BackgroundImage + ')'
   }">
-    <div id="GameStart" class="overlay" v-if="isGameStart">
+    <div id="GameStart" class="overlay" v-if="Step == 'GameStart'">
       <div id="startButton" class="click" @click="gameStart()">
         <p>GameStart</p>
       </div>
     </div>
-    <div id="GameOver" class="overlay" v-if="isGameOver">
+    <div id="GameOver" class="overlay" v-if="Step == 'GameOver'">
       <p>GameOver</p>
     </div>
+    <div id="GameClear" class="overlay" v-if="Step == 'GameClear'">
+      <p>GameClear</p>
+    </div>
     <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
-      <Character :CharaData="{ 'character': 'hero', 'formula': '', 'num': HP }" />
+      <Character :CharaData="{ 'character': 'hero', 'formula': '', 'power': HP }" />
       <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
     </div>
     <Tower :TowerData=Tower1 :key="key1" /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
@@ -29,8 +32,18 @@ import StageData from "@/assets/StageData.json"
 const Stage = StageData["FirstStage"]["Stage"]
 const BackgroundImage = ref(StageData["FirstStage"]["background"])
 const HP = ref(StageData["FirstStage"]["PlayerHP"])
-const isGameStart = ref(true)
-const isGameOver = ref(false)
+
+// 表示中の画面を管理
+const Step = ref("GameStart")
+/*
+StepList = [
+  "GameStart",
+  "PlayingGame",
+  "GameOver",
+  "GameClear"
+]
+*/
+
 // keyによる再描画
 // 2つの塔にkey属性を追加し、そのkeyを更新することで、塔コンポーネントを明示的に再描画する
 // https://qiita.com/fuminopen/items/34eb14d6e74c3a9fcbf0
@@ -58,7 +71,7 @@ HeroPossition(30, 20)
 
 
 function gameStart() {
-  isGameStart.value = false
+  Step.value = "PlayingGame"
 }
 
 function nextStep() { //次の塔を描画するように切り替え
@@ -68,14 +81,14 @@ function nextStep() { //次の塔を描画するように切り替え
   HeroPossition(30, 20)
 }
 
-function ClickChara(Num) {
-  Calc(Stage[TowerNum.value + 1][Num]["num"], Stage[TowerNum.value + 1][Num]["formula"])
-  Stage[TowerNum.value + 1][Num] = { "character": "", "formula": "", "num": "" } //ステージ情報からキャラを削除
+function ClickChara(Floor) {
+  Calc(Stage[TowerNum.value + 1][Floor]["power"], Stage[TowerNum.value + 1][Floor]["formula"])
+  Stage[TowerNum.value + 1][Floor] = { "character": "", "formula": "", "power": "" } //ステージ情報からキャラを削除
   key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
   // プレイヤーの移動
-  var UnderNum = Stage[TowerNum.value + 1].length - Num
-  HeroPossition(230, 20 + 100 * UnderNum)
-  console.log(UnderNum);
+  var UnderFloor = Stage[TowerNum.value + 1].length - Floor
+  HeroPossition(230, 20 + 100 * UnderFloor)
+  console.log(UnderFloor);
   checkLive() // 生きているかをチェック
   // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
   let count = 0
@@ -86,28 +99,31 @@ function ClickChara(Num) {
     }
   }
   if (count == 0) {
+    // ステージのクリアをチェック
+    // if()
+    // 次のステージへ
     nextStep()
   }
 }
-function checkLive() {
+function checkLive() { //プレイヤーの死をチェック
   if (HP.value <= 0) {
-    isGameOver.value = true
+    Step.value = "GameOver"
   }
 }
-function Calc(Num, formula) { //プレイヤーのHPを計算&適用
+function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   switch (formula) {
     case "+":
-      HP.value = HP.value + Num
+      HP.value = HP.value + Power
       break
     case "-":
-      HP.value = HP.value - Num
+      HP.value = HP.value - Power
       break
     case "×":
-      HP.value = HP.value * Num
+      HP.value = HP.value * Power
       break
     case "÷":
-      HP.value = HP.value / Num
-      HP.value = Math.round(HP.value / Num)
+      HP.value = HP.value / Power
+      HP.value = Math.round(HP.value / Power)
   }
 }
 
