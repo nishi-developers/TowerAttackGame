@@ -1,21 +1,23 @@
 <template>
   <!-- <button type="button" @click="nextStep">nextStep</button> -->
-  <div id="MainCanvas" :style="{'background-image': BackgroundImage}">
-    <div id="GameStart" class="overlay" v-if=" isGameStart ">
+  <div id="MainCanvas" :style="{
+    'background-image': 'url(/src/assets/background/' + BackgroundImage + ')'
+  }">
+    <div id="GameStart" class="overlay" v-if="isGameStart">
       <div id="startButton" class="click" @click="gameStart()">
         <p>GameStart</p>
       </div>
     </div>
-    <div id="GameOver" class="overlay" v-if=" isGameOver ">
+    <div id="GameOver" class="overlay" v-if="isGameOver">
       <p>GameOver</p>
     </div>
-    <div id="hero">
-      <Character :CharaData=" { 'character': 'hero', 'formula': '', 'num': HP } " />
+    <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
+      <Character :CharaData="{ 'character': 'hero', 'formula': '', 'num': HP }" />
       <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
     </div>
-    <Tower :TowerData= Tower1  :key=" key1 " /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
+    <Tower :TowerData=Tower1 :key="key1" /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
     <div id="spacer"></div>
-    <Tower :TowerData= Tower2  @clickTower=" ClickChara " :key=" key2 " /> <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
+    <Tower :TowerData=Tower2 @clickTower="ClickChara" :key="key2" /> <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
   </div>
 </template>
 
@@ -23,10 +25,10 @@
 import { ref } from 'vue'
 import Character from "@/components/character.vue"
 import Tower from "@/components/tower.vue"
-import Stages from "@/assets/StageData.json"
-const Stage = Stages["FirstStage"]["Stage"]
-const BackgroundImage = ref("url(/src/assets/background/" + Stages["FirstStage"]["background"]+")")
-const HP = ref(100)
+import StageData from "@/assets/StageData.json"
+const Stage = StageData["FirstStage"]["Stage"]
+const BackgroundImage = ref(StageData["FirstStage"]["background"])
+const HP = ref(StageData["FirstStage"]["PlayerHP"])
 const isGameStart = ref(true)
 const isGameOver = ref(false)
 // keyによる再描画
@@ -42,6 +44,19 @@ const Tower2 = ref("")
 Tower1.value = Stage[TowerNum.value]
 Tower2.value = Stage[TowerNum.value + 1]
 
+// Playerの位置
+const HeroLeft = ref(0)
+const HeroBottom = ref(0)
+function HeroPossition(x, y) {
+  HeroLeft.value = x
+  HeroBottom.value = y
+}
+HeroPossition(30, 20)
+// HeroPossition(230, 120)
+// HeroPossition(230, 220)
+
+
+
 function gameStart() {
   isGameStart.value = false
 }
@@ -50,13 +65,18 @@ function nextStep() { //次の塔を描画するように切り替え
   TowerNum.value++
   Tower1.value = Stage[TowerNum.value]
   Tower2.value = Stage[TowerNum.value + 1]
+  HeroPossition(30, 20)
 }
 
 function ClickChara(Num) {
   Calc(Stage[TowerNum.value + 1][Num]["num"], Stage[TowerNum.value + 1][Num]["formula"])
   Stage[TowerNum.value + 1][Num] = { "character": "", "formula": "", "num": "" } //ステージ情報からキャラを削除
   key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
-  checkLive()
+  // プレイヤーの移動
+  var UnderNum = Stage[TowerNum.value + 1].length - Num
+  HeroPossition(230, 20 + 100 * UnderNum)
+  console.log(UnderNum);
+  checkLive() // 生きているかをチェック
   // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
   let count = 0
   for (let i = 0; i < Stage[TowerNum.value + 1].length; i++) {
@@ -152,8 +172,8 @@ div#app {
 
 #hero {
   position: absolute;
-  bottom: 20px;
-  left: 30px;
+  /* bottom: 20px; */
+  /* left: 30px; */
   width: 100px;
   height: 130px;
   z-index: 15;

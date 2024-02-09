@@ -1,6 +1,7 @@
 {
     "FirstStage": {
-        "background":"Mounten1.jpg",
+        "background": "Mounten1.jpg",
+        "PlayerHP": 100,
         "Stage": [
             [
                 {
