@@ -88,7 +88,6 @@ function ClickChara(Floor) {
   // プレイヤーの移動
   var UnderFloor = Stage[TowerNum.value + 1].length - Floor
   HeroPossition(230, 20 + 100 * UnderFloor)
-  console.log(UnderFloor);
   checkLive() // 生きているかをチェック
   // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
   let count = 0
@@ -100,9 +99,13 @@ function ClickChara(Floor) {
   }
   if (count == 0) {
     // ステージのクリアをチェック
-    // if()
-    // 次のステージへ
-    nextStep()
+    console.log(Stage.length);
+    if (Stage.length-1 <= TowerNum.value+1) {
+      Step.value = "GameClear"
+    } else {
+      // 次のステージへ
+      nextStep()
+    }
   }
 }
 function checkLive() { //プレイヤーの死をチェック
