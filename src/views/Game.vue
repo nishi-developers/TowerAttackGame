@@ -1,8 +1,6 @@
 <template>
   <!-- <button type="button" @click="nextStep">nextStep</button> -->
-  <div id="MainCanvas" :style="{
-    'background-image': 'url(' + BackgroundImage + ')'
-  }">
+  <div id="MainCanvas" :class="['background', BackgroundImage]">
     <div id="GameStart" class="overlay" v-if="Step == 'GameStart'">
       <div id="startButton" class="click" @click="gameStart()">
         <p>GameStart</p>
@@ -30,7 +28,12 @@ import Character from "@/components/character.vue"
 import Tower from "@/components/tower.vue"
 import StageData from "@/assets/StageData.json"
 const Stage = StageData["FirstStage"]["Stage"]
-const BackgroundImage = ref(new URL("../assets/background/"+StageData["FirstStage"]["background"], import.meta.url).pathname)
+
+// 背景
+// const BackgroundImage = ref(new URL("../assets/background/"+StageData["FirstStage"]["background"], import.meta.url).pathname)
+// CSSのclass名を指定することでstyleを切り替えて背景を変える
+// 画像ファイルを直接指定する試みはvercelとの問題でできなかった
+const BackgroundImage = ref(StageData["FirstStage"]["background"])
 
 const HP = ref(StageData["FirstStage"]["PlayerHP"])
 
@@ -101,7 +104,7 @@ function ClickChara(Floor) {
   if (count == 0) {
     // ステージのクリアをチェック
     console.log(Stage.length);
-    if (Stage.length-1 <= TowerNum.value+1) {
+    if (Stage.length - 1 <= TowerNum.value + 1) {
       Step.value = "GameClear"
     } else {
       // 次のステージへ
@@ -180,6 +183,20 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
 
 #spacer {
   width: 50px;
+}
+
+
+/* 背景 */
+.background.Mounten1 {
+  background-image: url("@/assets/background/Mounten1.jpg");
+}
+
+.background.Mounten2 {
+  background-image: url("@/assets/background/Mounten2.jpg");
+}
+
+.background.Mounten3 {
+  background-image: url("@/assets/background/Mounten3.jpg");
 }
 </style>
 <style>
