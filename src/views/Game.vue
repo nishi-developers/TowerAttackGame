@@ -1,7 +1,7 @@
 <template>
   <!-- <button type="button" @click="nextStep">nextStep</button> -->
   <div id="MainCanvas" :style="{
-    'background-image': 'url(/src/assets/background/' + BackgroundImage + ')'
+    'background-image': 'url(' + BackgroundImage + ')'
   }">
     <div id="GameStart" class="overlay" v-if="Step == 'GameStart'">
       <div id="startButton" class="click" @click="gameStart()">
@@ -30,7 +30,8 @@ import Character from "@/components/character.vue"
 import Tower from "@/components/tower.vue"
 import StageData from "@/assets/StageData.json"
 const Stage = StageData["FirstStage"]["Stage"]
-const BackgroundImage = ref(StageData["FirstStage"]["background"])
+const BackgroundImage = ref(new URL("../assets/background/"+StageData["FirstStage"]["background"], import.meta.url).pathname)
+
 const HP = ref(StageData["FirstStage"]["PlayerHP"])
 
 // 表示中の画面を管理
