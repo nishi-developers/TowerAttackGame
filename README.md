@@ -4,6 +4,9 @@
 
 新歓の映像で流すため、動画配信サービスの広告にあるクソゲーを再現する
 
+現在は個人アカウント(M_Haruki)よりVercelで公開中
+[TowerAttackGame](https://tower-attack-game.vercel.app/)
+
 ## Vue + vite
 
 This template should help get you started developing with Vue 3 in Vite.

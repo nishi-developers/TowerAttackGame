@@ -129,7 +129,6 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
       HP.value = HP.value * Power
       break
     case "÷":
-      HP.value = HP.value / Power
       HP.value = Math.round(HP.value / Power)
   }
 }
