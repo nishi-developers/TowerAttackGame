@@ -9,6 +9,9 @@
 
 ## Docker
 
+リアルタイムで更新されないため、利用をおすすめはしない。
+コードを改変したら`docker-compose restart`が必須
+
 [docker-compose のコマンドについて](https://knowledge.sakura.ad.jp/16862/)
 [docker のコマンドについて](https://www.kagoya.jp/howto/cloud/container/dockercommand/)
 [docker ファイルとかについて](https://qiita.com/Dai_Kentaro/items/de26054e8cf1e019a667)
