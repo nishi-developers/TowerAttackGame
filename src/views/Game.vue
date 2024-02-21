@@ -1,10 +1,16 @@
 <template>
   <!-- <button type="button" @click="nextStep">nextStep</button> -->
+  <!-- クリック時の画像を読ませることで、一回目のクリックから画像が表示されるようにする -->
+  <img src="@/assets/cursor/cursor.png" style="display: none;">
+  <img src="@/assets/cursor/click.png" style="display: none;">
+  <!--  -->
   <div id="MainCanvas" :class="['background', BackgroundImage]">
     <Overlay :step="Step" @re="reOverlay"></Overlay>
-    <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
-      <Character :CharaData="{ 'character': 'hero', 'formula': '', 'power': HP }" />
-      <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
+    <div id="heroPositionSys">
+      <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
+        <Character :CharaData="{ 'character': 'hero', 'formula': '', 'power': HP }" />
+        <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
+      </div>
     </div>
     <Tower :TowerData=Tower1 :TowerNum=1 :key="key1" /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
     <div id="spacer"></div>
@@ -56,11 +62,20 @@ Tower2.value = Stage[TowerNum.value + 1]
 // Playerの位置
 const HeroLeft = ref(0)
 const HeroBottom = ref(0)
-function HeroPossition(x, y) {
-  HeroLeft.value = x
+function HeroPossition(x, tower, y) {
+  if (x != undefined) {
+    HeroLeft.value = x
+  } else if (tower != undefined) {
+    if (tower == 1) {
+      HeroLeft.value = -150
+    } else if (tower == 2) {
+      HeroLeft.value = 50
+
+    }
+  }
   HeroBottom.value = y
 }
-HeroPossition(30, 5)
+HeroPossition(undefined, 1, 5)
 
 function reOverlay(Action) {
   if (Action == "GameStart") {
@@ -70,17 +85,13 @@ function reOverlay(Action) {
 
 function nextStep() { //次の塔を描画するように切り替え&ゴール処理
   // 次があるかどうかチェック
-  console.log(Stage.length)
   TowerNum.value++
-  console.log(TowerNum.value + 1);
-  console.log(Stage.length);
-  console.log("--");
   if (TowerNum.value + 1 < Stage.length) {
     Tower1.value = Stage[TowerNum.value]
     Tower2.value = Stage[TowerNum.value + 1]
-    HeroPossition(30, 5)
+    HeroPossition(undefined, 1, 5)
   } else { //次がなければクリア
-    HeroPossition(230, 5)
+    HeroPossition(undefined, 2, 5)
     Step.value = "StageClear"
   }
 }
@@ -90,11 +101,11 @@ function ClickChara(Floor) {
   Stage[TowerNum.value + 1][Floor]["character"] = ""
   Stage[TowerNum.value + 1][Floor]["formula"] = ""
   Stage[TowerNum.value + 1][Floor]["power"] = ""
-  console.log(Stage);
+  // console.log(Stage);
   key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
   // プレイヤーの移動
   var UnderFloor = Stage[TowerNum.value + 1].length - Floor
-  HeroPossition(230, 100 * UnderFloor - 80)
+  HeroPossition(undefined, 2, 100 * UnderFloor - 80)
   checkLive() // 生きているかをチェック
   // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
   let count = 0
@@ -141,6 +152,7 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   display: flex;
   align-items: flex-end;
   position: absolute;
+  justify-content: center;
 }
 
 #spacer {
@@ -169,6 +181,11 @@ div#app {
   width: 100%;
 }
 
+#heroPositionSys {
+  position: absolute;
+  left: 50%;
+}
+
 #hero {
   position: absolute;
   /* bottom: 20px; */
@@ -192,10 +209,18 @@ div#app {
 }
 
 /* Cursor */
-#MainCanvas * {
+#MainCanvas,
+#MainCanvas *,
+.overlay,
+.overlay * {
   cursor: url("@/assets/cursor/cursor.png"), auto;
 }
 
+/* .click:active,
+.click *:active { 
+なぜかこれは使えない
+  */
+#MainCanvas:active,
 #MainCanvas *:active {
   cursor: url("@/assets/cursor/click.png"), auto;
 }
