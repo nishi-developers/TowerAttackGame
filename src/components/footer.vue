@@ -2,7 +2,7 @@
     <div id="Footer">
         <a class="github" href="https://github.com/nishi-developers/TowerAttackGame"><font-awesome-icon
                 :icon="['fab', 'github']" /></a>
-        <p>Powered by 504 </p>
+        <p>Powered by <b>504</b> </p>
     </div>
 </template>
 <style scoped>
@@ -23,6 +23,10 @@
   right: 0;
   font-size: 1.5rem;
   margin: 10px;
+}
+
+#Footer p b {
+  font-size: 2rem;
 }
 
 .github {

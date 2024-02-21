@@ -1,17 +1,7 @@
 <template>
   <!-- <button type="button" @click="nextStep">nextStep</button> -->
   <div id="MainCanvas" :class="['background', BackgroundImage]">
-    <div id="GameStart" class="overlay" v-if="Step == 'GameStart'">
-      <div id="startButton" class="click" @click="gameStart()">
-        <p>Start</p>
-      </div>
-    </div>
-    <div id="GameOver" class="overlay" v-if="Step == 'GameOver'">
-      <p>GameOver</p>
-    </div>
-    <div id="GameClear" class="overlay" v-if="Step == 'GameClear'">
-      <p>GameClear</p>
-    </div>
+    <Overlay :step="Step" @re="reOverlay"></Overlay>
     <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
       <Character :CharaData="{ 'character': 'hero', 'formula': '', 'power': HP }" />
       <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
@@ -27,6 +17,7 @@
 import { ref } from 'vue'
 import Character from "@/components/character.vue"
 import Tower from "@/components/tower.vue"
+import Overlay from "@/components/gameoverlay.vue"
 import StageData from "@/assets/StageData.json"
 const Stage = StageData["FirstStage"]["Stage"]
 
@@ -69,14 +60,12 @@ function HeroPossition(x, y) {
   HeroLeft.value = x
   HeroBottom.value = y
 }
-HeroPossition(30, 20)
-// HeroPossition(230, 120)
-// HeroPossition(230, 220)
+HeroPossition(30, 0)
 
-
-
-function gameStart() {
-  Step.value = "PlayingGame"
+function reOverlay(Action) {
+  if (Action == "GameStart") {
+    Step.value = "PlayingGame"
+  }
 }
 
 function nextStep() { //次の塔を描画するように切り替え&ゴール処理
@@ -89,9 +78,9 @@ function nextStep() { //次の塔を描画するように切り替え&ゴール�
   if (TowerNum.value + 1 < Stage.length) {
     Tower1.value = Stage[TowerNum.value]
     Tower2.value = Stage[TowerNum.value + 1]
-    HeroPossition(30, 20)
+    HeroPossition(30, 0)
   } else { //次がなければクリア
-    HeroPossition(230, 20)
+    HeroPossition(230, 0)
     Step.value = "GameClear"
   }
 }
@@ -105,7 +94,7 @@ function ClickChara(Floor) {
   key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
   // プレイヤーの移動
   var UnderFloor = Stage[TowerNum.value + 1].length - Floor
-  HeroPossition(230, 20 + 100 * UnderFloor)
+  HeroPossition(230, 100 * UnderFloor - 80)
   checkLive() // 生きているかをチェック
   // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
   let count = 0
@@ -154,46 +143,9 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   position: absolute;
 }
 
-
-.overlay {
-  position: fixed;
-  top: 0;
-  z-index: 100;
-  height: 90%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-/* .overlay p {
-  font-size: 5rem;
-} */
-
-#startButton {
-  background-color: rgb(70, 196, 255);
-  -webkit-text-stroke-width: 3px;
-  -webkit-text-stroke-color: rgb(255, 230, 0);
-  border-radius: 8px;
-  height: 120px;
-  width: 300px;
-  position: relative;
-}
-
-#startButton p {
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  font-size: 6rem;
-}
-
 #spacer {
   width: 50px;
 }
-
 
 /* 背景 */
 .background.Mounten1 {
@@ -222,7 +174,7 @@ div#app {
   /* bottom: 20px; */
   /* left: 30px; */
   width: 100px;
-  height: 130px;
+  height: 100px;
   z-index: 15;
 }
 

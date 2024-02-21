@@ -6,7 +6,8 @@
     <img class="chara npc" v-if="props.CharaData.character == 'dragon'" src="@/assets/character/dragon.png">
     <img class="chara npc" v-if="props.CharaData.character == 'drink'" src="@/assets/character/drink.png">
     <img class="chara npc" v-if="props.CharaData.character == 'portion'" src="@/assets/character/portion.png">
-    <p class="text npc" v-if="props.CharaData.character != 'hero'">{{ props.CharaData.formula }}{{ props.CharaData.power }}</p>
+    <p class="text npc" v-if="props.CharaData.character != 'hero'">{{ props.CharaData.formula }}{{ props.CharaData.power }}
+    </p>
 </template>
 <script setup>
 const props = defineProps(["CharaData"])
@@ -19,7 +20,8 @@ const props = defineProps(["CharaData"])
 
 .text {
     position: absolute;
+    bottom: -10;
     z-index: 10;
-    font-family: "Bungee Spice", sans-serif;
+    font-family: "Bungee Spice";
 }
 </style>

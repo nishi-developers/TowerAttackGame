@@ -3,26 +3,20 @@
         <div>
             <div class="tower top" v-if="props.TowerData[0].option != 'Base' && props.TowerData[0].option != 'Goal'">
                 <img class="towerImg top" src="@/assets/tower/tower-top.svg">
-                <br class="hub">
             </div>
             <div @click="Move(n - 1)" class="tower middle" :class="{ 'click': props.TowerNum == 2 }"
                 v-if="props.TowerData[0].option != 'Base' && props.TowerData[0].option != 'Goal'"
                 v-for="n in props.TowerData.length" :key="n">
-                <img class="towerImg middle" src="@/assets/tower/tower-middle.svg">
+                <img v-if="n != props.TowerData.length" class="towerImg middle" src="@/assets/tower/tower-middle.svg">
+                <img v-if="n == props.TowerData.length" class="towerImg middle" src="@/assets/tower/tower-bottom.svg">
                 <Character :CharaData="props.TowerData[n - 1]" /> <!--キャラクターを描画 子コンポーネントにこの部分のキャラの構成要素を送信-->
-            </div>
-            <div class="tower bottom"
-                v-if="props.TowerData[0].option != 'Base' && props.TowerData[0].option != 'Goal'">
-                <img class="towerImg bottom" src="@/assets/tower/tower-bottom.svg">
             </div>
         </div>
         <div>
-            <div class="tower"
-                v-if="props.TowerData[0].option == 'Base'">
+            <div class="tower" v-if="props.TowerData[0].option == 'Base'">
                 <img class="towerImg" src="@/assets/tower/camp.svg">
             </div>
-            <div @click="Move(0)" class="tower click"
-                v-if="props.TowerData[0].option == 'Goal'">
+            <div @click="Move(0)" class="tower click" v-if="props.TowerData[0].option == 'Goal'">
                 <img class="towerImg" src="@/assets/tower/castle.png">
             </div>
         </div>
@@ -46,7 +40,8 @@ function Move(parts) { // タワーのクリックした位置を親コンポー
 
 .towerImg {
     width: 150px;
-    margin-bottom: -4px;
+    /* ここを調整 */
+    margin-bottom: -5px;
 }
 </style>
 <style>
