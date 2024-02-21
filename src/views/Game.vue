@@ -192,11 +192,11 @@ div#app {
 }
 
 /* Cursor */
-* {
+#MainCanvas * {
   cursor: url("@/assets/cursor/cursor.png"), auto;
 }
 
-.click *:active {
+#MainCanvas *:active {
   cursor: url("@/assets/cursor/click.png"), auto;
 }
 </style> 
