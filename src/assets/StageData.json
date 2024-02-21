@@ -5,7 +5,7 @@
         "Stage": [
             [
                 {
-                    "character": "noneTower"
+                    "character": "Base"
                 }
             ],
             [
@@ -55,6 +55,11 @@
                     "character": "portion",
                     "formula": "+",
                     "power": 500
+                }
+            ],
+            [
+                {
+                    "character": "Goal"
                 }
             ]
         ]

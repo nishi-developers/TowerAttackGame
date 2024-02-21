@@ -16,9 +16,10 @@
       <Character :CharaData="{ 'character': 'hero', 'formula': '', 'power': HP }" />
       <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
     </div>
-    <Tower :TowerData=Tower1 :key="key1" /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
+    <Tower :TowerData=Tower1 :TowerNum=1 :key="key1" /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
     <div id="spacer"></div>
-    <Tower :TowerData=Tower2 @clickTower="ClickChara" :key="key2" /> <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
+    <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara" :key="key2" />
+    <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
   </div>
 </template>
 
@@ -88,6 +89,7 @@ function nextStep() { //次の塔を描画するように切り替え
 function ClickChara(Floor) {
   Calc(Stage[TowerNum.value + 1][Floor]["power"], Stage[TowerNum.value + 1][Floor]["formula"])
   Stage[TowerNum.value + 1][Floor] = { "character": "", "formula": "", "power": "" } //ステージ情報からキャラを削除
+  console.log(Stage);
   key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
   // プレイヤーの移動
   var UnderFloor = Stage[TowerNum.value + 1].length - Floor
@@ -103,7 +105,7 @@ function ClickChara(Floor) {
   }
   if (count == 0) {
     // ステージのクリアをチェック
-    console.log(Stage.length);
+    // console.log(Stage.length);
     if (Stage.length - 1 <= TowerNum.value + 1) {
       Step.value = "GameClear"
     } else {
@@ -198,6 +200,7 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   background-image: url("@/assets/background/Mounten3.jpg");
 }
 </style>
+
 <style>
 html,
 body,
