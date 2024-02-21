@@ -160,6 +160,12 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
 }
 
 /* 背景 */
+.background {
+  background-position-x: center;
+  background-position-y: bottom;
+  background-size: auto 100%;
+}
+
 .background.Mounten1 {
   background-image: url("@/assets/background/Mounten1.jpg");
 }
