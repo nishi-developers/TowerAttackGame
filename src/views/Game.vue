@@ -36,7 +36,7 @@ StepList = [
   "GameStart",
   "PlayingGame",
   "GameOver",
-  "GameClear"
+  "StageClear"
 ]
 */
 
@@ -60,7 +60,7 @@ function HeroPossition(x, y) {
   HeroLeft.value = x
   HeroBottom.value = y
 }
-HeroPossition(30, 0)
+HeroPossition(30, 5)
 
 function reOverlay(Action) {
   if (Action == "GameStart") {
@@ -78,10 +78,10 @@ function nextStep() { //次の塔を描画するように切り替え&ゴール�
   if (TowerNum.value + 1 < Stage.length) {
     Tower1.value = Stage[TowerNum.value]
     Tower2.value = Stage[TowerNum.value + 1]
-    HeroPossition(30, 0)
+    HeroPossition(30, 5)
   } else { //次がなければクリア
-    HeroPossition(230, 0)
-    Step.value = "GameClear"
+    HeroPossition(230, 5)
+    Step.value = "StageClear"
   }
 }
 
