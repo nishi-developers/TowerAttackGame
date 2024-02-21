@@ -22,6 +22,7 @@
     <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
   </div>
   <div id="Ground">
+    <a class="github" href="https://github.com/nishi-developers/TowerAttackGame"><font-awesome-icon :icon="['fab', 'github']" /></a>
     <p>Powered by 504 </p>
   </div>
 </template>
@@ -163,6 +164,7 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   background-color: rgb(100, 90, 81);
   position: absolute;
   bottom: 0;
+  /* padding: 10px; */
 }
 
 #Ground p {
@@ -172,12 +174,24 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   bottom: 0;
   right: 0;
   font-size: 1.5rem;
+  margin: 10px;
 }
+
+.github{
+  /* color: #1f2328; */
+  color: white;
+  font-size: 3rem;
+  margin: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 .overlay {
   position: fixed;
   top: 0;
   z-index: 100;
-  height: 100%;
+  height: 90%;
   width: 100%;
   display: flex;
   justify-content: center;
