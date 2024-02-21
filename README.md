@@ -1,11 +1,20 @@
 # JunkGame
 
-79期向け新入生歓迎会を目標に作成されたWEBゲーム
+79 期向け新入生歓迎会を目標に作成された WEB ゲーム
 
 新歓の映像で流すため、動画配信サービスの広告にあるクソゲーを再現する
 
-現在は個人アカウント(M_Haruki)よりVercelで公開中
+現在は個人アカウント(M_Haruki)より Vercel で公開中
 [TowerAttackGame](https://tower-attack-game.vercel.app/)
+
+## Docker
+
+リアルタイムで更新されないため、利用をおすすめはしない。
+コードを改変したら`docker-compose restart`が必須
+
+[docker-compose のコマンドについて](https://knowledge.sakura.ad.jp/16862/)
+[docker のコマンドについて](https://www.kagoya.jp/howto/cloud/container/dockercommand/)
+[docker ファイルとかについて](https://qiita.com/Dai_Kentaro/items/de26054e8cf1e019a667)
 
 ## Vue + vite
 

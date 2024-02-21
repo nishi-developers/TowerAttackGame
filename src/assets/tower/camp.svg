@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg132"
+   width="473.21732"
+   height="358.76666"
+   viewBox="0 0 473.21733 358.76666"
+   sodipodi:docname="camp.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs136">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath158">
+      <path
+         d="M 0,1200 H 1600 V 0 H 0 Z"
+         id="path156" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="namedview134"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.37786019"
+     inkscape:cx="943.47066"
+     inkscape:cy="461.81103"
+     inkscape:window-width="1551"
+     inkscape:window-height="1032"
+     inkscape:window-x="271"
+     inkscape:window-y="132"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g154">
+    <inkscape:page
+       x="0"
+       y="0"
+       id="page138"
+       width="473.21732"
+       height="358.76666" />
+  </sodipodi:namedview>
+  <g
+     id="g140"
+     inkscape:groupmode="layer"
+     inkscape:label="Page 1"
+     transform="matrix(1.3333333,0,0,-1.3333333,-174.78786,1411.0061)">
+    <g
+       id="g142"
+       transform="translate(131.0909,789.1796)">
+      <path
+         d="M 0,0 177.456,269.075 354.913,0 Z"
+         style="fill:#eda55f;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path144" />
+    </g>
+    <path
+       d="M 240.786,789.18 H 376.308 V 897.317 H 240.786 Z"
+       style="fill:#895f36;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path146" />
+    <g
+       id="g148"
+       transform="translate(233.7059,923.7179)">
+      <path
+         d="m 0,0 v -26.401 h 7.08 135.522 7.081 V 0 Z"
+         style="fill:#d38042;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path150" />
+    </g>
+    <g
+       id="g152">
+      <g
+         id="g154"
+         clip-path="url(#clipPath158)" />
+    </g>
+  </g>
+</svg>
