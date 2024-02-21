@@ -79,16 +79,28 @@ function gameStart() {
   Step.value = "PlayingGame"
 }
 
-function nextStep() { //次の塔を描画するように切り替え
+function nextStep() { //次の塔を描画するように切り替え&ゴール処理
+  // 次があるかどうかチェック
+  console.log(Stage.length)
   TowerNum.value++
-  Tower1.value = Stage[TowerNum.value]
-  Tower2.value = Stage[TowerNum.value + 1]
+  console.log(TowerNum.value + 1);
+  console.log(Stage.length);
+  console.log("--");
+  if (TowerNum.value + 1 < Stage.length) {
+    Tower1.value = Stage[TowerNum.value]
+    Tower2.value = Stage[TowerNum.value + 1]
+  } else { //次がなければクリア
+    Step.value = "GameClear"
+  }
+
   HeroPossition(30, 20)
 }
 
 function ClickChara(Floor) {
   Calc(Stage[TowerNum.value + 1][Floor]["power"], Stage[TowerNum.value + 1][Floor]["formula"])
-  Stage[TowerNum.value + 1][Floor] = { "character": "", "formula": "", "power": "" } //ステージ情報からキャラを削除
+  Stage[TowerNum.value + 1][Floor]["character"] = ""
+  Stage[TowerNum.value + 1][Floor]["formula"] = ""
+  Stage[TowerNum.value + 1][Floor]["power"] = ""
   console.log(Stage);
   key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
   // プレイヤーの移動
@@ -104,14 +116,7 @@ function ClickChara(Floor) {
     }
   }
   if (count == 0) {
-    // ステージのクリアをチェック
-    // console.log(Stage.length);
-    if (Stage.length - 1 <= TowerNum.value + 1) {
-      Step.value = "GameClear"
-    } else {
-      // 次のステージへ
-      nextStep()
-    }
+    nextStep()
   }
 }
 function checkLive() { //プレイヤーの死をチェック

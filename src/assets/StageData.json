@@ -5,7 +5,7 @@
         "Stage": [
             [
                 {
-                    "character": "Base"
+                    "option": "Base"
                 }
             ],
             [
@@ -59,7 +59,7 @@
             ],
             [
                 {
-                    "character": "Goal"
+                    "option": "Goal"
                 }
             ]
         ]
