@@ -21,7 +21,9 @@
     <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara" :key="key2" />
     <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
   </div>
-  <div id="Ground"></div>
+  <div id="Ground">
+    <p>Powered by 504 </p>
+  </div>
 </template>
 
 <script setup>
@@ -163,6 +165,14 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   bottom: 0;
 }
 
+#Ground p {
+  color: white;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 1.5rem;
+}
 .overlay {
   position: fixed;
   top: 0;
