@@ -3,7 +3,7 @@
   <div id="MainCanvas" :class="['background', BackgroundImage]">
     <div id="GameStart" class="overlay" v-if="Step == 'GameStart'">
       <div id="startButton" class="click" @click="gameStart()">
-        <p>GameStart</p>
+        <p>Start</p>
       </div>
     </div>
     <div id="GameOver" class="overlay" v-if="Step == 'GameOver'">
@@ -20,10 +20,6 @@
     <div id="spacer"></div>
     <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara" :key="key2" />
     <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
-  </div>
-  <div id="Ground">
-    <a class="github" href="https://github.com/nishi-developers/TowerAttackGame"><font-awesome-icon :icon="['fab', 'github']" /></a>
-    <p>Powered by 504 </p>
   </div>
 </template>
 
@@ -158,34 +154,6 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   position: absolute;
 }
 
-#Ground {
-  width: 100%;
-  height: 10%;
-  background-color: rgb(100, 90, 81);
-  position: absolute;
-  bottom: 0;
-  /* padding: 10px; */
-}
-
-#Ground p {
-  color: white;
-  display: inline-block;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  font-size: 1.5rem;
-  margin: 10px;
-}
-
-.github{
-  /* color: #1f2328; */
-  color: white;
-  font-size: 3rem;
-  margin: 10px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
 
 .overlay {
   position: fixed;
@@ -196,19 +164,20 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-.overlay p {
+/* .overlay p {
   font-size: 5rem;
-}
+} */
 
 #startButton {
   background-color: rgb(70, 196, 255);
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: red;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: rgb(255, 230, 0);
   border-radius: 8px;
   height: 120px;
-  width: 400px;
+  width: 300px;
   position: relative;
 }
 
@@ -218,6 +187,7 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
+  font-size: 6rem;
 }
 
 #spacer {
