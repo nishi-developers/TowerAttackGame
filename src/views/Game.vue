@@ -89,11 +89,11 @@ function nextStep() { //次の塔を描画するように切り替え&ゴール�
   if (TowerNum.value + 1 < Stage.length) {
     Tower1.value = Stage[TowerNum.value]
     Tower2.value = Stage[TowerNum.value + 1]
+    HeroPossition(30, 20)
   } else { //次がなければクリア
+    HeroPossition(230, 20)
     Step.value = "GameClear"
   }
-
-  HeroPossition(30, 20)
 }
 
 function ClickChara(Floor) {
