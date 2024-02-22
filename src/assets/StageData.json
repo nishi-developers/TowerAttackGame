@@ -1,5 +1,6 @@
 {
-    "FirstStage": {
+    "01": {
+        "StageName": "FirstStage",
         "background": "Mounten1",
         "PlayerHP": 100,
         "Stage": [

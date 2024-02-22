@@ -25,15 +25,28 @@ import Character from "@/components/character.vue"
 import Tower from "@/components/tower.vue"
 import Overlay from "@/components/gameoverlay.vue"
 import StageData from "@/assets/StageData.json"
-const Stage = StageData["FirstStage"]["Stage"]
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const StageID = route.params.stageid //パラメーターからコース番号を取得
+// const StageID = "01"
+
+// 無いコースを指定された場合は404
+// リロードせずにリダイレクトするとエラーを吐いて止まるため、js標準のリダイレクトで
+if (!(StageData[StageID])) {
+  location.href="/404"
+}
+
+const Stage = StageData[StageID]["Stage"]
+
 
 // 背景
 // const BackgroundImage = ref(new URL("../assets/background/"+StageData["FirstStage"]["background"], import.meta.url).pathname)
 // CSSのclass名を指定することでstyleを切り替えて背景を変える
 // 画像ファイルを直接指定する試みはvercelとの問題でできなかった
-const BackgroundImage = ref(StageData["FirstStage"]["background"])
+const BackgroundImage = ref(StageData[StageID]["background"])
 
-const HP = ref(StageData["FirstStage"]["PlayerHP"])
+const HP = ref(StageData[StageID]["PlayerHP"])
 
 // 表示中の画面を管理
 const Step = ref("GameStart")
@@ -70,7 +83,6 @@ function HeroPossition(x, tower, y) {
       HeroLeft.value = -150
     } else if (tower == 2) {
       HeroLeft.value = 50
-
     }
   }
   HeroBottom.value = y
