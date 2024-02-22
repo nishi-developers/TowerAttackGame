@@ -1,6 +1,6 @@
-{
-    "01": {
-        "StageName": "First Stage",
+[
+    {
+        "StageName": "FirstStage",
         "Description":"初心者向け",
         "BackgroundImage": "Mounten1",
         "PlayerHP": 100,
@@ -66,28 +66,28 @@
             ]
         ]
     },
-    "02":{
+    {
         "StageName":"Second!!",
         "Description":"aa"
     },
-    "03":{
+    {
         "StageName":"Second!!",
         "Description":"aa"
     },
-    "04":{
+    {
         "StageName":"Second!!",
         "Description":"aa"
     },
-    "05":{
+    {
         "StageName":"Second!!",
         "Description":"aa"
     },
-    "06":{
+    {
         "StageName":"Second!!",
         "Description":"aa"
     },
-    "07":{
+    {
         "StageName":"Second!!",
         "Description":"aa"
     }
-}
+]
