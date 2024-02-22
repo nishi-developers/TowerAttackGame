@@ -1,75 +1,186 @@
 <template>
     <div id="GameStart" class="overlay" v-if="props.step == 'GameStart'">
-        <div id="startButton" class="click" @click="Action('GameStart')">
-            <p><b>Start</b></p>
+        <p class="title"><b>[ {{ stagename }} ]</b></p>
+        <div class="menus">
+            <div class="box" @click="Action('GameStart')">
+                <p class="btext"><b>Start</b></p>
+            </div>
         </div>
     </div>
     <div id="GameOver" class="overlay" v-if="props.step == 'GameOver'">
-        <p><b>Game Over</b></p>
+        <p class="title"><b>Game Over</b></p>
+        <div class="menus">
+            <RouterLink to="/menu" class="RouterLink">
+                <div class="box">
+                    <p class="btext">ステージセレクトに戻る</p>
+                </div>
+            </RouterLink>
+            <div class="box" @click="Restart()">
+                <p class="btext">やり直す</p>
+            </div>
+        </div>
     </div>
     <div id="StageClear" class="overlay" v-if="props.step == 'StageClear'">
-        <p><b>Stage Clear</b></p>
+        <p class="title"><b>Stage Clear</b></p>
+        <div class="menus">
+            <a :href="'/game/' + nextStageID" class="RouterLink">
+                <div class="box">
+                    <p class="btext">次のステージへ</p>
+                </div>
+            </a>
+            <!-- <RouterLink :to="'/game/' + nextStageID" class="RouterLink">
+                <div class="box">
+                    <p class="btext">次のステージへ</p>
+                </div>
+            </RouterLink> -->
+            <RouterLink to="/menu" class="RouterLink">
+                <div class="box">
+                    <p class="btext">ステージセレクトに戻る</p>
+                </div>
+            </RouterLink>
+            <div class="box" @click="Restart()">
+                <p class="btext">やり直す</p>
+            </div>
+        </div>
     </div>
 </template>
 <script setup>
-const props = defineProps(["step"]) //親コンポーネントから1本の塔の構成データなどを取得
+import StageData from "@/assets/StageData.json"
+import { useRoute, useRouter } from 'vue-router'
+const route = useRoute()
+const router = useRouter()
+
+
+const props = defineProps(["step", "stageid"]) //親コンポーネントからデータなどを取得
 const emit = defineEmits(["re"]) //親コンポーネントから返答用の要素を取得
 function Action(action) { // タワーのクリックした位置を親コンポーネントに送信
     emit("re", action)
 }
+const stagename = StageData[props.stageid]['StageName']
+const nextStageID = String(Number(props.stageid) + 1)
+
+function Restart() {
+    router.go({ path: route.path, force: true })
+}
 </script>
 <style scoped>
+/* 全体 */
 .overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
     z-index: 100;
-    height: 90%;
+    height: 100%;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* display: flex;
+    justify-content: center; */
+    /* align-items: center; */
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-#startButton {
-    background-color: rgb(70, 196, 255);
-    border-radius: 8px;
-    height: 120px;
-    width: 300px;
+.RouterLink {
+    text-decoration: none;
+}
+
+.title {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+    width: 100%;
+}
+
+.menus {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 45%;
+    width: 80%;
+    /* background-color: #000; */
+}
+
+.menus .box {
+    border-radius: 15px;
     position: relative;
+    box-sizing: border-box;
 }
 
+.menus .btext {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+}
 
+/* GameStart */
+/* タイトル */
+#GameStart .title {
+    font-size: 3rem;
+    color: #000000;
+}
 
-#startButton p {
+/* ボタンの枠 */
+#GameStart .menus .box {
+    width: 100%;
+    height: 35%;
+    margin: 10px auto;
+    border: 1px #000 solid;
+    background-color: rgb(35, 174, 255);
+}
+
+/* ボタンの文字 */
+#GameStart .menus .btext {
+    font-size: 4rem;
     color: white;
-    -webkit-text-stroke: 3px rgb(255, 230, 0);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    font-size: 6rem;
+    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
 
-#GameOver p {
-    color: black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    font-size: 6rem;
-    text-align: center;
+/* GameOver */
+/* タイトル */
+#GameOver .title {
+    font-size: 5.5rem;
+    color: #ca0000;
 }
 
+/* ボタンの枠 */
+#GameOver .menus .box {
+    width: 100%;
+    height: 25%;
+    margin: 10px auto;
+    border: 1px #000 solid;
+    background-color: rgb(35, 174, 255);
+}
 
-#StageClear p {
-    color: rgb(255, 174, 0);
-    -webkit-text-stroke: 3px rgb(255, 230, 0);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    font-size: 6rem;
-    text-align: center;
+/* ボタンの文字 */
+#GameOver .menus .btext {
+    font-size: 1.4rem;
+    color: white;
+    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
+}
+
+/* StageClear */
+/* タイトル */
+#StageClear .title {
+    font-size: 5.5rem;
+    color: #ffbb00;
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+}
+
+/* ボタンの枠 */
+#StageClear .menus .box {
+    width: 100%;
+    height: 25%;
+    margin: 10px auto;
+    border: 1px #000 solid;
+    background-color: rgb(35, 174, 255);
+}
+
+/* ボタンの文字 */
+#StageClear .menus .btext {
+    font-size: 1.4rem;
+    color: white;
+    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
 </style>

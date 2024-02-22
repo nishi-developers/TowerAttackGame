@@ -1,6 +1,8 @@
-{
-    "FirstStage": {
-        "background": "Mounten1",
+[
+    {
+        "StageName": "FirstStage",
+        "Description":"初心者向け",
+        "BackgroundImage": "Mounten1",
         "PlayerHP": 100,
         "Stage": [
             [
@@ -63,5 +65,29 @@
                 }
             ]
         ]
+    },
+    {
+        "StageName":"Second!!",
+        "Description":"aa"
+    },
+    {
+        "StageName":"Second!!",
+        "Description":"aa"
+    },
+    {
+        "StageName":"Second!!",
+        "Description":"aa"
+    },
+    {
+        "StageName":"Second!!",
+        "Description":"aa"
+    },
+    {
+        "StageName":"Second!!",
+        "Description":"aa"
+    },
+    {
+        "StageName":"Second!!",
+        "Description":"aa"
     }
-}
+]
