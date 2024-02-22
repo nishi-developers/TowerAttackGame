@@ -1,8 +1,5 @@
 <template>
   <!-- <button type="button" @click="nextStep">nextStep</button> -->
-  <!-- クリック時の画像を読ませることで、一回目のクリックから画像が表示されるようにする -->
-  <img src="@/assets/cursor/cursor.png" style="display: none;">
-  <img src="@/assets/cursor/click.png" style="display: none;">
   <!--  -->
   <div id="MainCanvas" :class="['background', BackgroundImage]">
     <Overlay :step="Step" :stageid="StageID" @re="reOverlay"></Overlay>
@@ -224,22 +221,5 @@ div#app {
   left: 50%;
   transform: translate(-50%, 0);
   font-size: 2rem;
-}
-
-/* Cursor */
-#MainCanvas,
-#MainCanvas *,
-.overlay,
-.overlay * {
-  cursor: url("@/assets/cursor/cursor.png"), auto;
-}
-
-/* .click:active,
-.click *:active { 
-なぜかこれは使えない
-  */
-#MainCanvas:active,
-#MainCanvas *:active {
-  cursor: url("@/assets/cursor/click.png"), auto;
 }
 </style> 

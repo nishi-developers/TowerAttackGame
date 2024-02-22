@@ -1,7 +1,9 @@
 <template>
   <div id="backimage">
     <div id="MainCanvas">
-      <p id="title" class="titles">Tower Attack Game</p>
+      <RouterLink to="/" class="RouterLink">
+        <p id="title" class="titles"><b>Tower Attack Game</b></p>
+      </RouterLink>
       <p id="subtitle" class="titles">ステージセレクト</p>
       <div id="stages">
         <a class="RouterLink" :href="'/game/' + StageID" v-for="StageID in Stages">
@@ -10,6 +12,7 @@
             <p class="text Description">{{ StageData[StageID]["Description"] }}</p>
           </div>
         </a>
+        <div id="spacer"></div>
         <!-- <RouterLink class="RouterLink" :to="'/game/' + StageID" v-for="StageID in Stages">
           <div class="stage">
             <p class="text Name"><b>{{ StageData[StageID]["StageName"] }}</b></p>
@@ -45,25 +48,27 @@ const Stages = Object.keys(StageData)
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: rgba(221, 221, 221, .5);
+  background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
 }
 
 /* タイトル */
 .titles {
   text-align: center;
+  color: #000;
 }
 
-#title{
-font-size: 2rem;
+#title {
+  font-size: 2.5rem;
 }
-#subtitle{
-font-size: 1.5rem;
+
+#subtitle {
+  font-size: 2rem;
 }
 
 #stages {
-  width: 70%;
-  height: 100%;
+  width: 80%;
+  height: 90%;
   margin: 0 auto;
   overflow: auto;
 }
@@ -71,19 +76,19 @@ font-size: 1.5rem;
 .stage {
   width: 100%;
   margin: 20px 0px;
-  padding: 5px;
-  border: 1px solid #000;
-  border-radius: 10px;
+  padding: 10px;
+  border: 1.5px solid #000;
+  border-radius: 15px;
   box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .Name {
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 
 .Description {
-  font-size: 1rem;
-
+  font-size: 1.5rem;
 }
 
 .text {
@@ -93,4 +98,21 @@ font-size: 1.5rem;
 .RouterLink {
   text-decoration: none;
 }
+
+#spacer {
+  height: 20px;
+}
+
+/* カーソルを戻す
+#MainCanvas,
+#MainCanvas *,
+.overlay,
+.overlay * {
+  cursor: auto;
+}
+
+#MainCanvas:active,
+#MainCanvas *:active {
+  cursor: auto;
+} */
 </style>

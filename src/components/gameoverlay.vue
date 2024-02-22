@@ -5,6 +5,11 @@
             <div class="box" @click="Action('GameStart')">
                 <p class="btext"><b>Start</b></p>
             </div>
+            <RouterLink to="/menu" class="RouterLink">
+                <div class="box box2">
+                    <p class="btext btext2">ステージセレクトに戻る</p>
+                </div>
+            </RouterLink>
         </div>
     </div>
     <div id="GameOver" class="overlay" v-if="props.step == 'GameOver'">
@@ -133,6 +138,22 @@ function Restart() {
 /* ボタンの文字 */
 #GameStart .menus .btext {
     font-size: 4rem;
+    color: white;
+    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
+}
+
+/* ボタンの枠 */
+#GameStart .menus .box2 {
+    width: 100%;
+    height: 15%;
+    margin: 50px auto;
+    border: 1px #000 solid;
+    background-color: rgb(35, 174, 255);
+}
+
+/* ボタンの文字 */
+#GameStart .menus .btext2 {
+    font-size: 1.5rem;
     color: white;
     /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
