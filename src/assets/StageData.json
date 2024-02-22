@@ -67,6 +67,27 @@
         ]
     },
     "02":{
-        "StageName":"Second!!"
+        "StageName":"Second!!",
+        "Description":"aa"
+    },
+    "03":{
+        "StageName":"Second!!",
+        "Description":"aa"
+    },
+    "04":{
+        "StageName":"Second!!",
+        "Description":"aa"
+    },
+    "05":{
+        "StageName":"Second!!",
+        "Description":"aa"
+    },
+    "06":{
+        "StageName":"Second!!",
+        "Description":"aa"
+    },
+    "07":{
+        "StageName":"Second!!",
+        "Description":"aa"
     }
 }

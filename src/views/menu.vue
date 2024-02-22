@@ -1,14 +1,15 @@
 <template>
   <div id="backimage">
     <div id="MainCanvas">
-      <p>ステージセレクト</p>
+      <p id="title" class="titles">Tower Attack Game</p>
+      <p id="subtitle" class="titles">ステージセレクト</p>
       <div id="stages">
-        <div class="stage" v-for="StageID in Stages">
-          <RouterLink :to="'/game/'+StageID">
-            {{ StageData[StageID]["StageName"] }}
-          </RouterLink>
-          <p>{{ StageData[StageID]["Description"] }}</p>
-        </div>
+        <RouterLink class="RouterLink" :to="'/game/' + StageID" v-for="StageID in Stages">
+          <div class="stage">
+            <p class="text Name"><b>{{ StageData[StageID]["StageName"] }}</b></p>
+            <p class="text Description">{{ StageData[StageID]["Description"] }}</p>
+          </div>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -20,6 +21,7 @@ const Stages = Object.keys(StageData)
 </script>
 
 <style scoped>
+/* 画面全体 */
 #backimage {
   height: 90%;
   width: 100%;
@@ -39,8 +41,50 @@ const Stages = Object.keys(StageData)
   padding: 0;
   background-color: rgba(221, 221, 221, .5);
   position: absolute;
-  /* display: flex; */
-  /* align-items: flex-end; */
-  /* justify-content: center; */
+}
+
+/* タイトル */
+.titles {
+  text-align: center;
+}
+
+#title{
+font-size: 2rem;
+}
+#subtitle{
+font-size: 1.5rem;
+}
+
+#stages {
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.stage {
+  width: 100%;
+  margin: 20px 0px;
+  padding: 5px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.Name {
+  font-size: 1.2rem;
+}
+
+.Description {
+  font-size: 1rem;
+
+}
+
+.text {
+  color: #000;
+}
+
+.RouterLink {
+  text-decoration: none;
 }
 </style>
