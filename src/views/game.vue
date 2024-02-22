@@ -176,15 +176,15 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
 }
 
 .background.Mounten1 {
-  background-image: url("@/assets/background/Mounten1.jpg");
+  background-image: url("@/assets/background/Mounten1.webp");
 }
 
 .background.Mounten2 {
-  background-image: url("@/assets/background/Mounten2.jpg");
+  background-image: url("@/assets/background/Mounten2.webp");
 }
 
 .background.Mounten3 {
-  background-image: url("@/assets/background/Mounten3.jpg");
+  background-image: url("@/assets/background/Mounten3.webp");
 }
 </style>
 

@@ -1,7 +1,7 @@
 <template>
   <!-- クリック時の画像を読ませることで、一回目のクリックから画像が表示されるようにする -->
-  <img src="@/assets/cursor/cursor.png" style="display: none;">
-  <img src="@/assets/cursor/click.png" style="display: none;">
+  <img src="@/assets/cursor/cursor.webp" style="display: none;">
+  <img src="@/assets/cursor/click.webp" style="display: none;">
   <RouterView />
   <Footer></Footer>
 </template>
@@ -29,7 +29,7 @@ import Footer from "@/components/footer.vue"
 
 /* Cursor */
 * {
-  cursor: url("@/assets/cursor/cursor.png"), auto;
+  cursor: url("@/assets/cursor/cursor.webp"), auto;
 }
 
 /* .click:active,
@@ -37,6 +37,6 @@ import Footer from "@/components/footer.vue"
 なぜかこれは使えない
   */
 *:active {
-  cursor: url("@/assets/cursor/click.png"), auto;
+  cursor: url("@/assets/cursor/click.webp"), auto;
 }
 </style>

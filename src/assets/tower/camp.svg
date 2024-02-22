@@ -33,15 +33,15 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="0.37786019"
-     inkscape:cx="943.47066"
-     inkscape:cy="461.81103"
+     inkscape:zoom="1.06875"
+     inkscape:cx="304.5614"
+     inkscape:cy="330.76023"
      inkscape:window-width="1551"
      inkscape:window-height="1032"
-     inkscape:window-x="271"
-     inkscape:window-y="132"
+     inkscape:window-x="326"
+     inkscape:window-y="181"
      inkscape:window-maximized="0"
-     inkscape:current-layer="g154">
+     inkscape:current-layer="g140">
     <inkscape:page
        x="0"
        y="0"
@@ -59,19 +59,20 @@
        transform="translate(131.0909,789.1796)">
       <path
          d="M 0,0 177.456,269.075 354.913,0 Z"
-         style="fill:#eda55f;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         style="fill:#90ef71;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="path144" />
     </g>
     <path
        d="M 240.786,789.18 H 376.308 V 897.317 H 240.786 Z"
-       style="fill:#895f36;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       style="fill:#5a8634;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="path146" />
     <g
        id="g148"
-       transform="translate(233.7059,923.7179)">
+       transform="translate(233.7059,923.7179)"
+       style="fill:#3dba15;fill-opacity:1">
       <path
          d="m 0,0 v -26.401 h 7.08 135.522 7.081 V 0 Z"
-         style="fill:#d38042;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         style="fill:#3dba15;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="path150" />
     </g>
     <g

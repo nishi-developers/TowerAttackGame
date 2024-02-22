@@ -17,7 +17,7 @@
                 <img class="towerImg" src="@/assets/tower/camp.svg">
             </div>
             <div @click="Move(0)" class="tower" v-if="props.TowerData[0].option == 'Goal'">
-                <img class="towerImg" src="@/assets/tower/castle.png">
+                <img class="towerImg" src="@/assets/tower/castle.svg">
             </div>
         </div>
     </div>
