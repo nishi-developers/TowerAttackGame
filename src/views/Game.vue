@@ -5,7 +5,7 @@
   <img src="@/assets/cursor/click.png" style="display: none;">
   <!--  -->
   <div id="MainCanvas" :class="['background', BackgroundImage]">
-    <Overlay :step="Step" @re="reOverlay"></Overlay>
+    <Overlay :step="Step" :stagename="StageData[StageID]['StageName']" @re="reOverlay"></Overlay>
     <div id="heroPositionSys">
       <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
         <Character :CharaData="{ 'character': 'hero', 'formula': '', 'power': HP }" />

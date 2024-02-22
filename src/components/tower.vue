@@ -4,7 +4,7 @@
             <div class="tower top" v-if="props.TowerData[0].option != 'Base' && props.TowerData[0].option != 'Goal'">
                 <img class="towerImg top" src="@/assets/tower/tower-top.svg">
             </div>
-            <div @click="Move(n - 1)" class="tower middle" :class="{ 'click': props.TowerNum == 2 }"
+            <div @click="Move(n - 1)" class="tower middle"
                 v-if="props.TowerData[0].option != 'Base' && props.TowerData[0].option != 'Goal'"
                 v-for="n in props.TowerData.length" :key="n">
                 <img v-if="n != props.TowerData.length" class="towerImg middle" src="@/assets/tower/tower-middle.svg">
@@ -16,7 +16,7 @@
             <div class="tower" v-if="props.TowerData[0].option == 'Base'">
                 <img class="towerImg" src="@/assets/tower/camp.svg">
             </div>
-            <div @click="Move(0)" class="tower click" v-if="props.TowerData[0].option == 'Goal'">
+            <div @click="Move(0)" class="tower" v-if="props.TowerData[0].option == 'Goal'">
                 <img class="towerImg" src="@/assets/tower/castle.png">
             </div>
         </div>
