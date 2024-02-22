@@ -16,6 +16,10 @@
 [docker のコマンドについて](https://www.kagoya.jp/howto/cloud/container/dockercommand/)
 [docker ファイルとかについて](https://qiita.com/Dai_Kentaro/items/de26054e8cf1e019a667)
 
+## vercel.json
+
+[Site](https://scrapbox.io/daikiojm/vue-router%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A3%E3%81%9FVue%E3%81%AESPA%E3%82%92Vercel%E3%81%AB%E3%83%9B%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9)
+
 ## Vue + vite
 
 This template should help get you started developing with Vue 3 in Vite.
