@@ -32,7 +32,7 @@ const Stages = Object.keys(StageData)
 <style scoped>
 /* 画面全体 */
 #backimage {
-  height: 90%;
+  height: calc(100% - var(--footer));
   width: 100%;
   margin: 0;
   padding: 0;
@@ -100,7 +100,7 @@ const Stages = Object.keys(StageData)
 }
 
 #spacer {
-  height: 20px;
+  height: var(--footer);
 }
 
 /* カーソルを戻す

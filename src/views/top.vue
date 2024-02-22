@@ -14,7 +14,7 @@
 #main {
     position: absolute;
     width: 100%;
-    height: 90%;
+    height: calc(100% - var(--footer));
     background-image: url("@/assets/top.webp");
     background-size: cover;
     background-position: center;

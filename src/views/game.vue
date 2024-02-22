@@ -31,7 +31,7 @@ const StageID = route.params.stageid //パラメーターからコース番号�
 // 無いコースを指定された場合は404
 // リロードせずにリダイレクトするとエラーを吐いて止まるため、js標準のリダイレクトで
 if (!(StageData[StageID])) {
-  location.href="/404"
+  location.href = "/404"
 }
 
 const Stage = StageData[StageID]["Stage"]
@@ -153,7 +153,7 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
 
 <style scoped>
 #MainCanvas {
-  height: 90%;
+  height: calc(100% - var(--footer));
   width: 100%;
   margin: 0;
   padding: 0;

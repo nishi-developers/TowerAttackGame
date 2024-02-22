@@ -28,7 +28,7 @@
     <div id="StageClear" class="overlay" v-if="props.step == 'StageClear'">
         <p class="title"><b>Stage Clear</b></p>
         <div class="menus">
-            <a :href="'/game/' + nextStageID" class="RouterLink">
+            <a :href="'/game/' + nextStageID" class="RouterLink" v-if="nextButton">
                 <div class="box">
                     <p class="btext">次のステージへ</p>
                 </div>
@@ -61,6 +61,13 @@ const emit = defineEmits(["re"]) //親コンポーネントから返答用の要
 function Action(action) { // タワーのクリックした位置を親コンポーネントに送信
     emit("re", action)
 }
+var nextButton = true
+if (StageData.length <= Number(props.stageid) + 1) {
+    nextButton = false
+}
+console.log(StageData.length);
+console.log( Number(props.stageid));
+
 const stagename = StageData[props.stageid]['StageName']
 const nextStageID = String(Number(props.stageid) + 1)
 
