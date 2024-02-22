@@ -44,7 +44,7 @@ const Stage = StageData[StageID]["Stage"]
 // const BackgroundImage = ref(new URL("../assets/background/"+StageData["FirstStage"]["background"], import.meta.url).pathname)
 // CSSのclass名を指定することでstyleを切り替えて背景を変える
 // 画像ファイルを直接指定する試みはvercelとの問題でできなかった
-const BackgroundImage = ref(StageData[StageID]["background"])
+const BackgroundImage = ref(StageData[StageID]["BackgroundImage"])
 
 const HP = ref(StageData[StageID]["PlayerHP"])
 

@@ -1,7 +1,8 @@
 {
     "01": {
         "StageName": "FirstStage",
-        "background": "Mounten1",
+        "Description":"初心者向け",
+        "BackgroundImage": "Mounten1",
         "PlayerHP": 100,
         "Stage": [
             [
@@ -64,5 +65,8 @@
                 }
             ]
         ]
+    },
+    "02":{
+        "StageName":"Second!!"
     }
 }

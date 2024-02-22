@@ -1,9 +1,24 @@
 <template>
   <div id="backimage">
     <div id="MainCanvas">
+      <p>ステージセレクト</p>
+      <div id="stages">
+        <div class="stage" v-for="StageID in Stages">
+          <RouterLink :to="'/game/'+StageID">
+            {{ StageData[StageID]["StageName"] }}
+          </RouterLink>
+          <p>{{ StageData[StageID]["Description"] }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import StageData from "@/assets/StageData.json"
+const Stages = Object.keys(StageData)
+</script>
+
 <style scoped>
 #backimage {
   height: 90%;
@@ -16,6 +31,7 @@
   background-position-y: bottom;
   background-size: auto 100%;
 }
+
 #MainCanvas {
   height: 100%;
   width: 100%;
