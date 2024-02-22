@@ -37,7 +37,7 @@ const Stages = Object.keys(StageData)
   margin: 0;
   padding: 0;
   position: absolute;
-  background-image: url("@/assets/background/Mounten1.jpg");
+  background-image: url("@/assets/background/Mounten1.webp");
   background-position-x: center;
   background-position-y: bottom;
   background-size: auto 100%;
