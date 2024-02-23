@@ -151,6 +151,12 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
       HP.value = HP.value ** Power
     case "sqrt":
       HP.value = Math.round(Math.pow(HP.value, 1 / Power))
+    case "random":
+      // for (let index = 0; index < 100; index++) {}
+      var selectednum = Math.floor(Math.random() * Power.length)
+      var selected = Power[selectednum]
+      Calc(selected["power"], selected["formula"])
+      // console.log(selectednum);
   }
 }
 

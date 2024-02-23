@@ -32,5 +32,7 @@ const props = defineProps(["CharaData"])
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-stroke: 0.3px #ffffff;
+    overflow: visible;
+    white-space: nowrap;
 }
 </style>
