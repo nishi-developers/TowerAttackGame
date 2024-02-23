@@ -13,18 +13,20 @@
             [
                 {
                     "character": "witch",
-                    "formula": "÷",
+                    "show":"÷2",
+                    "formula": "/",
                     "power": "2"
                 },
                 {
                     "character": "drink",
-                    "formula": "×",
+                    "formula": "*",
                     "power": "2"
                 },
                 {
                     "character": "zombie",
-                    "formula": "-",
-                    "power": 500
+                    "show":"√2",
+                    "formula": "sqrt",
+                    "power": 2
                 },
                 {
                     "character": "portion",
