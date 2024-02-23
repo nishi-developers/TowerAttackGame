@@ -9,7 +9,8 @@
                 v-for="n in props.TowerData.length" :key="n">
                 <img v-if="n != props.TowerData.length" class="towerImg middle" src="@/assets/tower/tower-middle.svg">
                 <img v-if="n == props.TowerData.length" class="towerImg middle" src="@/assets/tower/tower-bottom.svg">
-                <Character :CharaData="props.TowerData[n - 1]" /> <!--キャラクターを描画 子コンポーネントにこの部分のキャラの構成要素を送信-->
+                <Character :CharaData="props.TowerData[n - 1]" v-if="props.TowerNum == 2" />
+                <!--キャラクターを描画 子コンポーネントにこの部分のキャラの構成要素を送信-->
             </div>
         </div>
         <div>
@@ -31,7 +32,6 @@ function Move(parts) { // タワーのクリックした位置を親コンポー
 }
 </script>
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
 
 .tower {
     position: relative;
@@ -55,6 +55,6 @@ function Move(parts) { // タワーのクリックした位置を親コンポー
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 </style>

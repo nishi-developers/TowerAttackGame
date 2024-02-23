@@ -5,7 +5,7 @@
     <Overlay :step="Step" :stageid="StageID" @re="reOverlay"></Overlay>
     <div id="heroPositionSys">
       <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
-        <Character :CharaData="{ 'character': 'hero', 'formula': '', 'power': HP }" />
+        <Character :CharaData="{ 'character': 'hero', 'show': HP }" />
         <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
       </div>
     </div>
@@ -108,6 +108,7 @@ function nextStep() { //次の塔を描画するように切り替え&ゴール�
 function ClickChara(Floor) {
   Calc(Stage[TowerNum.value + 1][Floor]["power"], Stage[TowerNum.value + 1][Floor]["formula"])
   Stage[TowerNum.value + 1][Floor]["character"] = ""
+  Stage[TowerNum.value + 1][Floor]["show"] = ""
   Stage[TowerNum.value + 1][Floor]["formula"] = ""
   Stage[TowerNum.value + 1][Floor]["power"] = ""
   // console.log(Stage);
@@ -141,11 +142,21 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
     case "-":
       HP.value = HP.value - Power
       break
-    case "×":
+    case "*":
       HP.value = HP.value * Power
       break
-    case "÷":
+    case "/":
       HP.value = Math.round(HP.value / Power)
+    case "^":
+      HP.value = HP.value ** Power
+    case "sqrt":
+      HP.value = Math.round(Math.pow(HP.value, 1 / Power))
+    case "random":
+      // for (let index = 0; index < 100; index++) {}
+      var selectednum = Math.floor(Math.random() * Power.length)
+      var selected = Power[selectednum]
+      Calc(selected["power"], selected["formula"])
+      // console.log(selectednum);
   }
 }
 
@@ -220,6 +231,6 @@ div#app {
   top: 0;
   left: 50%;
   transform: translate(-50%, 0);
-  font-size: 2rem;
+  font-size: 2.2rem;
 }
 </style> 

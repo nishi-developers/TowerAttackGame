@@ -1,7 +1,7 @@
 [
     {
         "StageName": "FirstStage",
-        "Description":"初心者向け",
+        "Description": "初心者向け",
         "BackgroundImage": "Mounten1",
         "PlayerHP": 100,
         "Stage": [
@@ -13,50 +13,36 @@
             [
                 {
                     "character": "witch",
-                    "formula": "÷",
+                    "show": "÷2",
+                    "formula": "/",
                     "power": "2"
                 },
                 {
                     "character": "drink",
-                    "formula": "×",
+                    "show": "×2",
+                    "formula": "*",
                     "power": "2"
                 },
                 {
                     "character": "zombie",
-                    "formula": "-",
-                    "power": 500
+                    "show": "3√",
+                    "formula": "sqrt",
+                    "power": 3
                 },
                 {
                     "character": "portion",
-                    "formula": "+",
-                    "power": 500
-                }
-            ],
-            [
-                {
-                    "character": "dragon",
-                    "formula": "-",
-                    "power": 500
-                },
-                {
-                    "character": "dragon",
-                    "formula": "×",
-                    "power": 500
-                },
-                {
-                    "character": "witch",
-                    "formula": "÷",
-                    "power": 500
-                },
-                {
-                    "character": "witch",
-                    "formula": "-",
-                    "power": 500
-                },
-                {
-                    "character": "portion",
-                    "formula": "+",
-                    "power": 500
+                    "show": "×2 or +50",
+                    "formula": "random",
+                    "power": [
+                        {
+                            "formula": "*",
+                            "power": "2"
+                        },
+                        {
+                            "formula": "+",
+                            "power": 50
+                        }
+                    ]
                 }
             ],
             [
@@ -67,27 +53,27 @@
         ]
     },
     {
-        "StageName":"Second!!",
-        "Description":"aa"
+        "StageName": "Second!!",
+        "Description": "aa"
     },
     {
-        "StageName":"Second!!",
-        "Description":"aa"
+        "StageName": "Second!!",
+        "Description": "aa"
     },
     {
-        "StageName":"Second!!",
-        "Description":"aa"
+        "StageName": "Second!!",
+        "Description": "aa"
     },
     {
-        "StageName":"Second!!",
-        "Description":"aa"
+        "StageName": "Second!!",
+        "Description": "aa"
     },
     {
-        "StageName":"Second!!",
-        "Description":"aa"
+        "StageName": "Second!!",
+        "Description": "aa"
     },
     {
-        "StageName":"Second!!",
-        "Description":"aa"
+        "StageName": "Second!!",
+        "Description": "aa"
     }
 ]

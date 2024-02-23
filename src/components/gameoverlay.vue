@@ -65,8 +65,8 @@ var nextButton = true
 if (StageData.length <= Number(props.stageid) + 1) {
     nextButton = false
 }
-console.log(StageData.length);
-console.log( Number(props.stageid));
+// console.log(StageData.length);
+// console.log( Number(props.stageid));
 
 const stagename = StageData[props.stageid]['StageName']
 const nextStageID = String(Number(props.stageid) + 1)
