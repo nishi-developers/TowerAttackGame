@@ -18,6 +18,7 @@ import Footer from "@/components/footer.vue"
 
 :root {
   --footer: 10%;
+  /* --footer: 15%; */
 }
 
 * {

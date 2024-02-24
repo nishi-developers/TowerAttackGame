@@ -1,8 +1,9 @@
 <template>
   <div id="Footer">
     <div id="contents">
-      <a class="github" href="https://github.com/nishi-developers/TowerAttackGame"><font-awesome-icon
-          :icon="['fab', 'github']" /></a>
+      <a id="githubs" href="https://github.com/nishi-developers/TowerAttackGame">
+        <font-awesome-icon id="github" :icon="['fab', 'github']" />
+      </a>
       <RouterLink to="/terms" class="RouterLink">
         <p id="terms">利用規約</p>
       </RouterLink>
@@ -24,6 +25,7 @@
   box-sizing: border-box;
 }
 
+/* クレジット */
 #Footer #credit {
   text-align: right;
   position: absolute;
@@ -33,48 +35,56 @@
   transform: translate(0, -50%)
 }
 
-#Footer p {
+#Footer #credit p {
   color: white;
   display: inline-block;
 }
 
-#Footer #main {
-
-  font-size: 2rem;
+#Footer #credit #main {
+  /* display: inline;
+  vertical-align: middle; */
+  font-size: 1.5rem;
 }
 
-#Footer #main b {
+#Footer #credit #main b {
+  /* display: inline;
+  vertical-align: middle; */
   font-size: 2.5rem;
 }
 
-#Footer #sub {
+#Footer #credit #sub {
   font-size: 1rem;
 }
 
-#Footer #sub b {
+#Footer #credit #sub b {
   font-size: 1.3rem;
 
 }
 
-.github {
-  /* color: #1f2328; */
-  color: white;
-  font-size: 3rem;
-  margin: auto;
+/* コンテンツ */
+#contents {
   position: absolute;
   left: 20px;
   top: 50%;
-  transform: translate(0, -50%)
+  margin: auto;
+  transform: translate(0, -50%);
 }
 
-/* Cursor戻す */
-#Footer,
-#Footer * {
-  cursor: auto;
+
+#github {
+  color: white;
+  font-size: 3rem;
+  margin: auto;
+  display: inline;
+  vertical-align: middle;
 }
 
-#Footer :active,
-#Footer *:active {
-  cursor: auto;
+#contents #terms {
+  display: inline;
+  color: white;
+  margin-inline-start: 15px;
+  font-size: 1rem;
+  vertical-align: middle;
+  text-decoration: underline;
 }
 </style>
