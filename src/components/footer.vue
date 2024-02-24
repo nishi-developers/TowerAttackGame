@@ -1,7 +1,12 @@
 <template>
   <div id="Footer">
-    <a class="github" href="https://github.com/nishi-developers/TowerAttackGame"><font-awesome-icon
-        :icon="['fab', 'github']" /></a>
+    <div id="contents">
+      <a class="github" href="https://github.com/nishi-developers/TowerAttackGame"><font-awesome-icon
+          :icon="['fab', 'github']" /></a>
+      <RouterLink to="/terms" class="RouterLink">
+        <p id="terms">利用規約</p>
+      </RouterLink>
+    </div>
     <div id="credit">
       <p id="main">created by <b>504</b> </p><br>
       <!-- <p id="sub">supported by <b>数学研究同好会</b></p> -->
@@ -60,4 +65,16 @@
   left: 20px;
   top: 50%;
   transform: translate(0, -50%)
-}</style>
+}
+
+/* Cursor戻す */
+#Footer,
+#Footer * {
+  cursor: auto;
+}
+
+#Footer :active,
+#Footer *:active {
+  cursor: auto;
+}
+</style>

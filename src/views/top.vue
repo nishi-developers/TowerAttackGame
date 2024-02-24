@@ -55,7 +55,4 @@
     color: #ff0000;
     -webkit-text-stroke: 2px rgb(255, 255, 255);
 }
-.RouterLink {
-    text-decoration: none;
-}
 </style>
