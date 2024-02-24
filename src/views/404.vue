@@ -21,8 +21,4 @@
     font-size: 1.5rem;
     color: #000;
 }
-
-.RouterLink {
-    color: #000;
-}
 </style>

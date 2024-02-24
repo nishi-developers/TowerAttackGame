@@ -16,8 +16,9 @@ import Footer from "@/components/footer.vue"
 /* @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 
-:root{
+:root {
   --footer: 10%;
+  /* --footer: 15%; */
 }
 
 * {
@@ -38,5 +39,9 @@ import Footer from "@/components/footer.vue"
   */
 *:active {
   cursor: url("@/assets/cursor/click.webp"), auto;
+}
+
+.RouterLink {
+  text-decoration: none;
 }
 </style>

@@ -89,10 +89,6 @@ function Restart() {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-.RouterLink {
-    text-decoration: none;
-}
-
 .title {
     position: absolute;
     top: 30%;

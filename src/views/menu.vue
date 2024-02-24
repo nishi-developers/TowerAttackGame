@@ -95,9 +95,7 @@ const Stages = Object.keys(StageData)
   color: #000;
 }
 
-.RouterLink {
-  text-decoration: none;
-}
+
 
 #spacer {
   height: var(--footer);
