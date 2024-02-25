@@ -111,7 +111,7 @@ function ClickChara(Floor) {
   Stage[TowerNum.value + 1][Floor]["show"] = ""
   Stage[TowerNum.value + 1][Floor]["formula"] = ""
   Stage[TowerNum.value + 1][Floor]["power"] = ""
-  // console.log(Stage);
+  console.log(Stage);
   key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
   // プレイヤーの移動
   var UnderFloor = Stage[TowerNum.value + 1].length - Floor
@@ -135,6 +135,7 @@ function checkLive() { //プレイヤーの死をチェック
   }
 }
 function Calc(Power, formula) { //プレイヤーのHPを計算&適用
+  // "break"忘れずに!!!
   switch (formula) {
     case "+":
       HP.value = HP.value + Power
@@ -147,16 +148,21 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
       break
     case "/":
       HP.value = Math.round(HP.value / Power)
+      break
     case "^":
       HP.value = HP.value ** Power
+      break
     case "sqrt":
       HP.value = Math.round(Math.pow(HP.value, 1 / Power))
+      break
     case "random":
       // for (let index = 0; index < 100; index++) {}
       var selectednum = Math.floor(Math.random() * Power.length)
       var selected = Power[selectednum]
+      console.log(selected);
       Calc(selected["power"], selected["formula"])
       // console.log(selectednum);
+      break
   }
 }
 
