@@ -1,5 +1,75 @@
 <template>
-    googleアナリティクスなど
-
-    <!-- - アクセス情報を収集してiphone or Android比率調べたい -->
+  <div id="backimage">
+    <div id="MainCanvas">
+      <RouterLink to="/" class="RouterLink">
+        <p id="title" class="titles"><b>Tower Attack Game</b></p>
+      </RouterLink>
+      <p id="subtitle" class="titles">利用規約</p>
+      <div id="contents">
+        <p class="heading">アクセス解析ツールについて</p>
+        <p class="text">当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス(Google Analytics)」を使用しています。
+          このGoogleアナリティクスではトラフィックデータ収集のため、Cookie、広告識別子などの識別情報、データの収集に使われる類似の技術を使用しています。
+          これらにより収集されたデータは匿名のものであり、個人を特定するものではありません。
+          <br>
+          なお、Cookieなどの一部の機能は、ユーザーにより無効にすることが可能です。
+          お使いのブラウザの設定などをご確認ください。
+          <br>
+          これらのことに関して、詳しくは「ユーザーが Google パートナーのサイトやアプリを使用する際の Google
+          によるデータ使用」(https://www.google.com/intl/ja/policies/privacy/partners/)をご確認ください。
+          Googleアナリティクスに関しては、「Google アナリティクス利用規約」(https://marketingplatform.google.com/about/analytics/terms/jp/)もご確認ください。
+        </p>
+      </div>
+    </div>
+  </div>
 </template>
+<style scoped>
+/* 画面全体 */
+#backimage {
+  height: calc(100% - var(--footer));
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  background-image: url("@/assets/background/Mounten1.webp");
+  background-position-x: center;
+  background-position-y: bottom;
+  background-size: auto 100%;
+}
+
+#MainCanvas {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+
+/* タイトル */
+.titles {
+  text-align: center;
+  color: #000;
+}
+
+#title {
+  margin-top: 15px;
+  font-size: 2.5rem;
+}
+
+#subtitle {
+  font-size: 2rem;
+}
+
+#contents{
+  margin: 15px;
+}
+
+#contents .heading {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+#contents .text {
+  font-size: 1rem;
+}
+</style>

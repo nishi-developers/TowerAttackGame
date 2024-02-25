@@ -13,12 +13,6 @@
           </div>
         </a>
         <div id="spacer"></div>
-        <!-- <RouterLink class="RouterLink" :to="'/game/' + StageID" v-for="StageID in Stages">
-          <div class="stage">
-            <p class="text Name"><b>{{ StageData[StageID]["StageName"] }}</b></p>
-            <p class="text Description">{{ StageData[StageID]["Description"] }}</p>
-          </div>
-        </RouterLink> -->
       </div>
     </div>
   </div>
@@ -59,6 +53,7 @@ const Stages = Object.keys(StageData)
 }
 
 #title {
+  margin-top: 15px;
   font-size: 2.5rem;
 }
 
