@@ -53,6 +53,82 @@
         ]
     },
     {
+        "StageName": "懐かしのステージ",
+        "Description": "開発段階で使用したステージ",
+        "BackgroundImage": "Mounten1",
+        "PlayerHP": 100,
+        "Stage": [
+            [
+                {
+                    "option": "Base"
+                }
+            ],
+            [
+                {
+                    "character": "witch",
+                    "show": "÷2",
+                    "formula": "/",
+                    "power": "2"
+                },
+                {
+                    "character": "drink",
+                    "show": "×2",
+                    "formula": "*",
+                    "power": "2"
+                },
+                {
+                    "character": "zombie",
+                    "show": "-500",
+                    "formula": "-",
+                    "power": 500
+                },
+                {
+                    "character": "portion",
+                    "show": "+500",
+                    "formula": "+",
+                    "power": 500
+                }
+            ],
+            [
+                {
+                    "character": "dragon",
+                    "show": "-500",
+                    "formula": "-",
+                    "power": 500
+                },
+                {
+                    "character": "dragon",
+                    "show": "×500",
+                    "formula": "*",
+                    "power": 500
+                },
+                {
+                    "character": "witch",
+                    "show": "÷500",
+                    "formula": "/",
+                    "power": 500
+                },
+                {
+                    "character": "witch",
+                    "show": "-500",
+                    "formula": "-",
+                    "power": 500
+                },
+                {
+                    "character": "portion",
+                    "show": "+500",
+                    "formula": "+",
+                    "power": 500
+                }
+            ],
+            [
+                {
+                    "option": "Goal"
+                }
+            ]
+        ]
+    },
+    {
         "StageName": "Second!!",
         "Description": "aa"
     },
