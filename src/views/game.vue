@@ -124,6 +124,8 @@ function ClickChara(Floor) {
   // 生きているかをチェック 死んでいれば以降の処理は行わない
   if (HP.value <= 0) {
     Step.value = "GameOver"
+    event("StageMiss")
+    event(`StageMiss(${StageID})`)
   }else{
   // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
   let count = 0

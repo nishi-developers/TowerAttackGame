@@ -20,7 +20,6 @@
 
 <script setup>
 import StageData from "@/assets/StageData.json"
-import { event } from 'vue-gtag'
 const Stages = Object.keys(StageData)
 </script>
 
