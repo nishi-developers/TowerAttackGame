@@ -6,7 +6,7 @@
       </RouterLink>
       <p id="subtitle" class="titles">ステージセレクト</p>
       <div id="stages">
-        <a class="RouterLink" :href="'/game/' + StageID" v-for="StageID in Stages">
+        <a class="RouterLink" :href="'/game/' + StageID" v-for="StageID in Stages" >
           <div class="stage">
             <p class="text Name"><b>{{ StageData[StageID]["StageName"] }}</b></p>
             <p class="text Description">{{ StageData[StageID]["Description"] }}</p>
@@ -20,6 +20,7 @@
 
 <script setup>
 import StageData from "@/assets/StageData.json"
+import { event } from 'vue-gtag'
 const Stages = Object.keys(StageData)
 </script>
 
