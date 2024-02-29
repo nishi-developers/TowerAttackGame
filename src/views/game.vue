@@ -156,7 +156,8 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
       HP.value = Math.round(Math.pow(HP.value, 1 / Power))
       break
     case "mod":
-      HP.value = Math.round(HP.value%Power.length)
+      HP.value = Math.round(HP.value%Power)
+      console.log(HP.value)
       break
     case "random":
       // for (let index = 0; index < 100; index++) {}
