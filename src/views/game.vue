@@ -116,7 +116,10 @@ function ClickChara(Floor) {
   // プレイヤーの移動
   var UnderFloor = Stage[TowerNum.value + 1].length - Floor
   HeroPossition(undefined, 2, 100 * UnderFloor - 80)
-  checkLive() // 生きているかをチェック
+  // 生きているかをチェック 死んでいれば以降の処理は行わない
+  if (HP.value <= 0) {
+    Step.value = "GameOver"
+  }else{
   // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
   let count = 0
   for (let i = 0; i < Stage[TowerNum.value + 1].length; i++) {
@@ -129,10 +132,6 @@ function ClickChara(Floor) {
     nextStep()
   }
 }
-function checkLive() { //プレイヤーの死をチェック
-  if (HP.value <= 0) {
-    Step.value = "GameOver"
-  }
 }
 function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   // "break"忘れずに!!!
@@ -157,7 +156,6 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
       break
     case "mod":
       HP.value = Math.round(HP.value%Power)
-      console.log(HP.value)
       break
     case "random":
       // for (let index = 0; index < 100; index++) {}
