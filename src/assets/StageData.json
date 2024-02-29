@@ -25,9 +25,9 @@
                 },
                 {
                     "character": "zombie",
-                    "show": "3√",
-                    "formula": "sqrt",
-                    "power": 3
+                    "show": "mod10",
+                    "formula": "mod",
+                    "power": 10
                 },
                 {
                     "character": "portion",
