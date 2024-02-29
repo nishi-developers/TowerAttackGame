@@ -13,6 +13,12 @@
             [
                 {
                     "character": "witch",
+                    "show": "+2",
+                    "formula": "+",
+                    "power": "2"
+                },
+                {
+                    "character": "witch",
                     "show": "÷2",
                     "formula": "/",
                     "power": "2"
