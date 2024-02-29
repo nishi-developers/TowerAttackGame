@@ -23,6 +23,7 @@ import Tower from "@/components/tower.vue"
 import Overlay from "@/components/gameoverlay.vue"
 import StageData from "@/assets/StageData.json"
 import { useRoute } from 'vue-router'
+import { event } from 'vue-gtag'
 
 const route = useRoute()
 const StageID = route.params.stageid //パラメーターからコース番号を取得
@@ -89,6 +90,8 @@ HeroPossition(undefined, 1, 5)
 function reOverlay(Action) {
   if (Action == "GameStart") {
     Step.value = "PlayingGame"
+    event("StageStart")
+    event(`StageStart(${StageID})`)
   }
 }
 
@@ -102,6 +105,8 @@ function nextStep() { //次の塔を描画するように切り替え&ゴール�
   } else { //次がなければクリア
     HeroPossition(undefined, 2, 5)
     Step.value = "StageClear"
+    event("StageClear")
+    event(`StageClear(${StageID})`)
   }
 }
 
@@ -119,6 +124,8 @@ function ClickChara(Floor) {
   // 生きているかをチェック 死んでいれば以降の処理は行わない
   if (HP.value <= 0) {
     Step.value = "GameOver"
+    event("StageMiss")
+    event(`StageMiss(${StageID})`)
   }else{
   // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
   let count = 0

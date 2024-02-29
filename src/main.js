@@ -15,6 +15,7 @@ library.add(fas, fab, far);
 
 createApp(App)
     .use(router)
-    .use(VueGtag, { config: { id: "G-5RR4CY9KB3" } })
+    // https://qiita.com/kazukinagahira/items/55167994c44744cded2a
+    .use(VueGtag, { config: { id: "G-5RR4CY9KB3" } },router)
     .component("font-awesome-icon", FontAwesomeIcon)
     .mount("#app");
