@@ -1,5 +1,5 @@
 <template>
-  <div id="backimage">
+  <div id="backimage" class="backgroundImage">
     <div id="MainCanvas">
       <RouterLink to="/" class="RouterLink">
         <p id="title" class="titles"><b>Tower Attack Game</b></p>
@@ -31,9 +31,6 @@
   padding: 0;
   position: absolute;
   background-image: url("@/assets/background/Mounten1.webp");
-  background-position-x: center;
-  background-position-y: bottom;
-  background-size: auto 100%;
 }
 
 #MainCanvas {
