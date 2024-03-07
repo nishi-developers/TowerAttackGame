@@ -2,7 +2,7 @@
   <!-- クリック時の画像を読ませることで、一回目のクリックから画像が表示されるようにする -->
   <img src="@/assets/cursor/cursor.webp" style="display: none;">
   <img src="@/assets/cursor/click.webp" style="display: none;">
-  <RouterView />
+  <RouterView :key="$route.fullPath"/>
   <Footer></Footer>
 </template>
 

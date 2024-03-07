@@ -50,7 +50,7 @@
     </div>
 </template>
 <script setup>
-const props = defineProps(["step", "stageid","stagedata"]) //親コンポーネントからデータなどを取得
+const props = defineProps(["step", "stageid", "stagedata"]) //親コンポーネントからデータなどを取得
 const emit = defineEmits(["re"]) //親コンポーネントから返答用の要素を取得
 function Action(action) { // タワーのクリックした位置を親コンポーネントに送信
     emit("re", action)
@@ -65,6 +65,9 @@ if (props.stagedata.length <= Number(props.stageid) + 1) {
 const stagename = props.stagedata[props.stageid]['StageName']
 const nextStageID = String(Number(props.stageid) + 1)
 
+function Restart() {
+    router.go({ path: route.path, force: true })
+}
 </script>
 <style scoped>
 /* 全体 */
