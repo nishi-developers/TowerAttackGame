@@ -9,9 +9,9 @@
         <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
       </div>
     </div>
-    <Tower :TowerData=Tower1 :TowerNum=1 :key="key1" /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
+    <Tower :TowerData=Tower1 :TowerNum=1 /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
     <div id="spacer"></div>
-    <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara" :key="key2" />
+    <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara" />
     <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
   </div>
 </template>
@@ -62,8 +62,8 @@ StepList = [
 // keyによる再描画
 // 2つの塔にkey属性を追加し、そのkeyを更新することで、塔コンポーネントを明示的に再描画する
 // https://qiita.com/fuminopen/items/34eb14d6e74c3a9fcbf0
-const key1 = ref(0) // 0 or 1
-const key2 = ref(2) // 2 or 3
+// const key1 = ref(0) // 0 or 1
+// const key2 = ref(2) // 2 or 3
 
 const TowerNum = ref(0) //何番目の塔が描画されているか
 const Tower1 = ref("")
@@ -119,7 +119,7 @@ function ClickChara(Floor) {
   Stage.value["Stage"][TowerNum.value + 1][Floor]["formula"] = ""
   Stage.value["Stage"][TowerNum.value + 1][Floor]["power"] = ""
   console.log(Stage.value["Stage"]);
-  key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
+  // key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
   // プレイヤーの移動
   var UnderFloor = Stage.value["Stage"][TowerNum.value + 1].length - Floor
   HeroPossition(undefined, 2, 100 * UnderFloor - 80)
