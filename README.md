@@ -26,16 +26,6 @@
 
 [GNU General Public License v3.0](https://github.com/nishi-developers/TowerAttackGame/blob/main/LICENSE)
 
-## 技術的な補足
-
-### トップの絵 (/src/assets/top.webp)
-
-OpenAI の開発した画像生成 AI 「DALL·E 3」で生成
-
-### vercel.json
-
-[参考サイト](https://scrapbox.io/daikiojm/vue-router%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A3%E3%81%9FVue%E3%81%AESPA%E3%82%92Vercel%E3%81%AB%E3%83%9B%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9)
-
 ## 実行環境
 
 ### Vercel
@@ -80,3 +70,13 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## 技術的な補足
+
+### トップの絵 (/src/assets/top.webp)
+
+OpenAI の開発した画像生成 AI 「DALL·E 3」で生成
+
+### vercel.json
+
+[参考サイト](https://scrapbox.io/daikiojm/vue-router%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A3%E3%81%9FVue%E3%81%AESPA%E3%82%92Vercel%E3%81%AB%E3%83%9B%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9)
