@@ -6,12 +6,12 @@
       </RouterLink>
       <p id="subtitle" class="titles">ステージセレクト</p>
       <div id="stages">
-        <a class="RouterLink" :href="'/game/' + StageID" v-for="StageID in Stages" >
+        <RouterLink class="RouterLink" :to="'/game/' + StageID" v-for="StageID in Stages" >
           <div class="stage">
             <p class="text Name"><b>{{ StageData[StageID]["StageName"] }}</b></p>
             <p class="text Description">{{ StageData[StageID]["Description"] }}</p>
           </div>
-        </a>
+        </RouterLink>
         <div id="spacer"></div>
       </div>
     </div>

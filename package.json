@@ -16,6 +16,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.5",
     "eslint": "^8.56.0",
     "eslint-plugin-vue": "^9.20.1",
+    "lodash": "^4.17.21",
     "vue": "^3.3.11",
     "vue-gtag": "^2.0.1",
     "vue-router": "^4.2.5"

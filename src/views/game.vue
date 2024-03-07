@@ -1,17 +1,15 @@
 <template>
-  <!-- <button type="button" @click="nextStep">nextStep</button> -->
-  <!--  -->
   <div id="MainCanvas" :class="['background', BackgroundImage]">
-    <Overlay :step="Step" :stageid="StageID" @re="reOverlay"></Overlay>
+    <Overlay :step="Step" :stageid="StageID" :stagedata=StageData @re="reOverlay" v-if="waitRender"></Overlay>
     <div id="heroPositionSys">
       <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
-        <Character :CharaData="{ 'character': 'hero', 'show': HP }" />
+        <Character :CharaData="{ 'character': 'hero', 'show': HP }"  v-if="waitRender"/>
         <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
       </div>
     </div>
-    <Tower :TowerData=Tower1 :TowerNum=1 :key="key1" /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
+    <Tower :TowerData=Tower1 :TowerNum=1  v-if="waitRender"/> <!--描写する1つ目の塔 この塔の構成要素を送信-->
     <div id="spacer"></div>
-    <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara" :key="key2" />
+    <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara"  v-if="waitRender"/>
     <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
   </div>
 </template>
@@ -22,32 +20,23 @@ import Character from "@/components/character.vue"
 import Tower from "@/components/tower.vue"
 import Overlay from "@/components/gameoverlay.vue"
 import StageData from "@/assets/StageData.json"
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { event } from 'vue-gtag'
+import { cloneDeep } from 'lodash'
 
 const route = useRoute()
+const router = useRouter()
 const StageID = route.params.stageid //パラメーターからコース番号を取得
-// const StageID = "01"
 
-// 無いコースを指定された場合は404
-// リロードせずにリダイレクトするとエラーを吐いて止まるため、js標準のリダイレクトで
-if (!(StageData[StageID])) {
-  location.href = "/404"
-}
+// 404時にレンダリングされるとエラーになるので待機させる
+const waitRender = ref(false)
 
-const Stage = StageData[StageID]["Stage"]
-
-
-// 背景
-// const BackgroundImage = ref(new URL("../assets/background/"+StageData["FirstStage"]["background"], import.meta.url).pathname)
-// CSSのclass名を指定することでstyleを切り替えて背景を変える
-// 画像ファイルを直接指定する試みはvercelとの問題でできなかった
-const BackgroundImage = ref(StageData[StageID]["BackgroundImage"])
-
-const HP = ref(StageData[StageID]["PlayerHP"])
+const Stage = ref()
+const BackgroundImage = ref()
+const HP = ref()
 
 // 表示中の画面を管理
-const Step = ref("GameStart")
+const Step = ref()
 /*
 StepList = [
   "GameStart",
@@ -56,23 +45,23 @@ StepList = [
   "StageClear"
 ]
 */
-
-// keyによる再描画
-// 2つの塔にkey属性を追加し、そのkeyを更新することで、塔コンポーネントを明示的に再描画する
-// https://qiita.com/fuminopen/items/34eb14d6e74c3a9fcbf0
-const key1 = ref(0) // 0 or 1
-const key2 = ref(2) // 2 or 3
-
-const TowerNum = ref(0) //何番目の塔が描画されているか
-const Tower1 = ref("")
-const Tower2 = ref("")
-
-Tower1.value = Stage[TowerNum.value]
-Tower2.value = Stage[TowerNum.value + 1]
+const TowerNum = ref()
+const Tower1 = ref()
+const Tower2 = ref()
 
 // Playerの位置
 const HeroLeft = ref(0)
 const HeroBottom = ref(0)
+
+// 初期化と404処理
+// 無いコースを指定された場合は404
+if (!(StageData[StageID])) {
+  router.push("/404")
+} else {
+  init()
+}
+
+// Playerの位置
 function HeroPossition(x, tower, y) {
   if (x != undefined) {
     HeroLeft.value = x
@@ -85,22 +74,43 @@ function HeroPossition(x, tower, y) {
   }
   HeroBottom.value = y
 }
-HeroPossition(undefined, 1, 5)
 
+// 初期化処理
+// ゲーム状況のリセット
+function init() {
+  Stage.value = cloneDeep(StageData[StageID])
+  BackgroundImage.value = StageData[StageID]["BackgroundImage"]// 背景
+  // CSSのclass名を指定することでstyleを切り替えて背景を変える
+  // 画像ファイルを直接指定する試みはvercelとの問題でできなかった
+  HP.value = Stage.value["PlayerHP"]
+  Step.value = "GameStart"
+  TowerNum.value = 0 //何番目の塔が描画されているか
+  Tower1.value = Stage.value["Stage"][TowerNum.value]
+  Tower2.value = Stage.value["Stage"][TowerNum.value + 1]
+  // Playerの位置
+  HeroPossition(undefined, 1, 5)
+  waitRender.value = true
+}
+
+// Overlayからの受信
 function reOverlay(Action) {
-  if (Action == "GameStart") {
-    Step.value = "PlayingGame"
-    event("StageStart")
-    event(`StageStart(${StageID})`)
+  switch (Action) {
+    case "GameStart":
+      Step.value = "PlayingGame"
+      event("StageStart")
+      event(`StageStart(${StageID})`)
+      break
+    case "restart":
+      init()
   }
 }
 
 function nextStep() { //次の塔を描画するように切り替え&ゴール処理
   // 次があるかどうかチェック
   TowerNum.value++
-  if (TowerNum.value + 1 < Stage.length) {
-    Tower1.value = Stage[TowerNum.value]
-    Tower2.value = Stage[TowerNum.value + 1]
+  if (TowerNum.value + 1 < Stage.value["Stage"].length) {
+    Tower1.value = Stage.value["Stage"][TowerNum.value]
+    Tower2.value = Stage.value["Stage"][TowerNum.value + 1]
     HeroPossition(undefined, 1, 5)
   } else { //次がなければクリア
     HeroPossition(undefined, 2, 5)
@@ -111,34 +121,33 @@ function nextStep() { //次の塔を描画するように切り替え&ゴール�
 }
 
 function ClickChara(Floor) {
-  Calc(Stage[TowerNum.value + 1][Floor]["power"], Stage[TowerNum.value + 1][Floor]["formula"])
-  Stage[TowerNum.value + 1][Floor]["character"] = ""
-  Stage[TowerNum.value + 1][Floor]["show"] = ""
-  Stage[TowerNum.value + 1][Floor]["formula"] = ""
-  Stage[TowerNum.value + 1][Floor]["power"] = ""
-  console.log(Stage);
-  key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
+  Calc(Stage.value["Stage"][TowerNum.value + 1][Floor]["power"], Stage.value["Stage"][TowerNum.value + 1][Floor]["formula"])
+  Stage.value["Stage"][TowerNum.value + 1][Floor]["character"] = ""
+  Stage.value["Stage"][TowerNum.value + 1][Floor]["show"] = ""
+  Stage.value["Stage"][TowerNum.value + 1][Floor]["formula"] = ""
+  Stage.value["Stage"][TowerNum.value + 1][Floor]["power"] = ""
+  // key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
   // プレイヤーの移動
-  var UnderFloor = Stage[TowerNum.value + 1].length - Floor
+  var UnderFloor = Stage.value["Stage"][TowerNum.value + 1].length - Floor
   HeroPossition(undefined, 2, 100 * UnderFloor - 80)
   // 生きているかをチェック 死んでいれば以降の処理は行わない
   if (HP.value <= 0) {
     Step.value = "GameOver"
     event("StageMiss")
     event(`StageMiss(${StageID})`)
-  }else{
-  // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
-  let count = 0
-  for (let i = 0; i < Stage[TowerNum.value + 1].length; i++) {
-    if (Stage[TowerNum.value + 1][i]["character"] != "") {
-      count++
-      break
+  } else {
+    // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
+    let count = 0
+    for (let i = 0; i < Stage.value["Stage"][TowerNum.value + 1].length; i++) {
+      if (Stage.value["Stage"][TowerNum.value + 1][i]["character"] != "") {
+        count++
+        break
+      }
+    }
+    if (count == 0) {
+      nextStep()
     }
   }
-  if (count == 0) {
-    nextStep()
-  }
-}
 }
 function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   // "break"忘れずに!!!
@@ -162,15 +171,12 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
       HP.value = Math.round(Math.pow(HP.value, 1 / Power))
       break
     case "mod":
-      HP.value = Math.round(HP.value%Power)
+      HP.value = Math.round(HP.value % Power)
       break
     case "random":
-      // for (let index = 0; index < 100; index++) {}
       var selectednum = Math.floor(Math.random() * Power.length)
       var selected = Power[selectednum]
-      console.log(selected);
       Calc(selected["power"], selected["formula"])
-      // console.log(selectednum);
       break
   }
 }
@@ -183,7 +189,6 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   width: 100%;
   margin: 0;
   padding: 0;
-  /* background-color: rgb(221, 221, 221); */
   display: flex;
   align-items: flex-end;
   position: absolute;
@@ -229,8 +234,6 @@ div#app {
 
 #hero {
   position: absolute;
-  /* bottom: 20px; */
-  /* left: 30px; */
   width: 100px;
   height: 100px;
   z-index: 15;
@@ -248,4 +251,4 @@ div#app {
   transform: translate(-50%, 0);
   font-size: 2.2rem;
 }
-</style> 
+</style>
