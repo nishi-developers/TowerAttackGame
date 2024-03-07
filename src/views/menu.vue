@@ -1,12 +1,12 @@
 <template>
-  <div id="backimage">
+  <div id="backimage" class="backgroundImage">
     <div id="MainCanvas">
       <RouterLink to="/" class="RouterLink">
         <p id="title" class="titles"><b>Tower Attack Game</b></p>
       </RouterLink>
       <p id="subtitle" class="titles">ステージセレクト</p>
       <div id="stages">
-        <RouterLink class="RouterLink" :to="'/game/' + StageID" v-for="StageID in Stages" >
+        <RouterLink class="RouterLink" :to="'/game/' + StageID" v-for="StageID in Stages">
           <div class="stage">
             <p class="text Name"><b>{{ StageData[StageID]["StageName"] }}</b></p>
             <p class="text Description">{{ StageData[StageID]["Description"] }}</p>
@@ -32,9 +32,6 @@ const Stages = Object.keys(StageData)
   padding: 0;
   position: absolute;
   background-image: url("@/assets/background/Mounten1.webp");
-  background-position-x: center;
-  background-position-y: bottom;
-  background-size: auto 100%;
 }
 
 #MainCanvas {
@@ -90,22 +87,7 @@ const Stages = Object.keys(StageData)
   color: #000;
 }
 
-
-
 #spacer {
   height: var(--footer);
 }
-
-/* カーソルを戻す
-#MainCanvas,
-#MainCanvas *,
-.overlay,
-.overlay * {
-  cursor: auto;
-}
-
-#MainCanvas:active,
-#MainCanvas *:active {
-  cursor: auto;
-} */
 </style>

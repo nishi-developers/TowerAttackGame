@@ -1,15 +1,15 @@
 <template>
-  <div id="MainCanvas" :class="['background', BackgroundImage]">
+  <div id="MainCanvas" :class="['background backgroundImage', BackgroundImage]">
     <Overlay :step="Step" :stageid="StageID" :stagedata=StageData @re="reOverlay" v-if="waitRender"></Overlay>
     <div id="heroPositionSys">
       <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
-        <Character :CharaData="{ 'character': 'hero', 'show': HP }"  v-if="waitRender"/>
+        <Character :CharaData="{ 'character': 'hero', 'show': HP }" v-if="waitRender" />
         <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
       </div>
     </div>
-    <Tower :TowerData=Tower1 :TowerNum=1  v-if="waitRender"/> <!--描写する1つ目の塔 この塔の構成要素を送信-->
+    <Tower :TowerData=Tower1 :TowerNum=1 v-if="waitRender" /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
     <div id="spacer"></div>
-    <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara"  v-if="waitRender"/>
+    <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara" v-if="waitRender" />
     <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
   </div>
 </template>
@@ -200,11 +200,6 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
 }
 
 /* 背景 */
-.background {
-  background-position-x: center;
-  background-position-y: bottom;
-  background-size: auto 100%;
-}
 
 .background.Mounten1 {
   background-image: url("@/assets/background/Mounten1.webp");

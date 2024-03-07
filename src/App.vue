@@ -44,4 +44,10 @@ import Footer from "@/components/footer.vue"
 .RouterLink {
   text-decoration: none;
 }
+
+.backgroundImage{
+  background-position-x: center;
+  background-position-y: bottom;
+  background-size: cover;
+}
 </style>
