@@ -2,9 +2,9 @@
 
 79 期向け新入生歓迎会を目標に作成された WEB ゲーム
 
-新歓の映像で流すため、動画配信サービスの広告にあるクソゲーを再現する
+広告ゲームを元にした数学パズルゲーム 
 
-現在は個人アカウント(M_Haruki)より Vercel で公開中
+nishi.dev.78th@gmail.comより Vercel で公開中
 [TowerAttackGame](https://tower-attack-game.vercel.app/)
 
 ## Docker
