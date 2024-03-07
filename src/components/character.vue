@@ -13,8 +13,6 @@
 const props = defineProps(["CharaData"])
 </script>
 <style scoped>
-/* @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap'); */
-
 .chara {
     position: absolute;
     width: 80px;
@@ -24,7 +22,6 @@ const props = defineProps(["CharaData"])
     position: absolute;
     bottom: -10;
     z-index: 10;
-    /* font-family: "Bungee Spice"; */
     color: rgba(0, 0, 0, 0);
     font-weight: 900;
     /* https://kouhekikyozou.com/css_text_gradation */

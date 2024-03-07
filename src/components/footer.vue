@@ -41,14 +41,10 @@
 }
 
 #Footer #credit #main {
-  /* display: inline;
-  vertical-align: middle; */
   font-size: 1.5rem;
 }
 
 #Footer #credit #main b {
-  /* display: inline;
-  vertical-align: middle; */
   font-size: 2.5rem;
 }
 

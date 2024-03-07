@@ -1,17 +1,15 @@
 <template>
-  <!-- <button type="button" @click="nextStep">nextStep</button> -->
-  <!--  -->
   <div id="MainCanvas" :class="['background', BackgroundImage]">
-    <Overlay :step="Step" :stageid="StageID" :stagedata=StageData @re="reOverlay"></Overlay>
+    <Overlay :step="Step" :stageid="StageID" :stagedata=StageData @re="reOverlay" v-if="waitRender"></Overlay>
     <div id="heroPositionSys">
       <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
-        <Character :CharaData="{ 'character': 'hero', 'show': HP }" />
+        <Character :CharaData="{ 'character': 'hero', 'show': HP }"  v-if="waitRender"/>
         <!--プレイヤー(position: absolute;) キャラコンポーネントから直接描画-->
       </div>
     </div>
-    <Tower :TowerData=Tower1 :TowerNum=1 /> <!--描写する1つ目の塔 この塔の構成要素を送信-->
+    <Tower :TowerData=Tower1 :TowerNum=1  v-if="waitRender"/> <!--描写する1つ目の塔 この塔の構成要素を送信-->
     <div id="spacer"></div>
-    <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara" />
+    <Tower :TowerData=Tower2 :TowerNum=2 @clickTower="ClickChara"  v-if="waitRender"/>
     <!--描写する2つ目の塔 この塔の構成要素を送信 2つめの塔のみクリックを受け付ける-->
   </div>
 </template>
@@ -30,12 +28,8 @@ const route = useRoute()
 const router = useRouter()
 const StageID = route.params.stageid //パラメーターからコース番号を取得
 
-// 無いコースを指定された場合は404
-// リロードせずにリダイレクトするとエラーを吐いて止まるため、js標準のリダイレクトで
-// if (!(StageData[StageID])) {
-//   // location.href = "/404"
-//   router.push("/404")
-// }
+// 404時にレンダリングされるとエラーになるので待機させる
+const waitRender = ref(false)
 
 const Stage = ref()
 const BackgroundImage = ref()
@@ -58,6 +52,16 @@ const Tower2 = ref()
 // Playerの位置
 const HeroLeft = ref(0)
 const HeroBottom = ref(0)
+
+// 初期化と404処理
+// 無いコースを指定された場合は404
+if (!(StageData[StageID])) {
+  router.push("/404")
+} else {
+  init()
+}
+
+// Playerの位置
 function HeroPossition(x, tower, y) {
   if (x != undefined) {
     HeroLeft.value = x
@@ -76,7 +80,6 @@ function HeroPossition(x, tower, y) {
 function init() {
   Stage.value = cloneDeep(StageData[StageID])
   BackgroundImage.value = StageData[StageID]["BackgroundImage"]// 背景
-  // const BackgroundImage = ref(new URL("../assets/background/"+StageData["FirstStage"]["background"], import.meta.url).pathname)
   // CSSのclass名を指定することでstyleを切り替えて背景を変える
   // 画像ファイルを直接指定する試みはvercelとの問題でできなかった
   HP.value = Stage.value["PlayerHP"]
@@ -86,8 +89,8 @@ function init() {
   Tower2.value = Stage.value["Stage"][TowerNum.value + 1]
   // Playerの位置
   HeroPossition(undefined, 1, 5)
+  waitRender.value = true
 }
-init()
 
 // Overlayからの受信
 function reOverlay(Action) {
@@ -123,7 +126,6 @@ function ClickChara(Floor) {
   Stage.value["Stage"][TowerNum.value + 1][Floor]["show"] = ""
   Stage.value["Stage"][TowerNum.value + 1][Floor]["formula"] = ""
   Stage.value["Stage"][TowerNum.value + 1][Floor]["power"] = ""
-  // console.log(Stage.value["Stage"]);
   // key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
   // プレイヤーの移動
   var UnderFloor = Stage.value["Stage"][TowerNum.value + 1].length - Floor
@@ -172,12 +174,9 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
       HP.value = Math.round(HP.value % Power)
       break
     case "random":
-      // for (let index = 0; index < 100; index++) {}
       var selectednum = Math.floor(Math.random() * Power.length)
       var selected = Power[selectednum]
-      // console.log(selected);
       Calc(selected["power"], selected["formula"])
-      // console.log(selectednum);
       break
   }
 }
@@ -190,7 +189,6 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   width: 100%;
   margin: 0;
   padding: 0;
-  /* background-color: rgb(221, 221, 221); */
   display: flex;
   align-items: flex-end;
   position: absolute;
@@ -236,8 +234,6 @@ div#app {
 
 #hero {
   position: absolute;
-  /* bottom: 20px; */
-  /* left: 30px; */
   width: 100px;
   height: 100px;
   z-index: 15;

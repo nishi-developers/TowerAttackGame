@@ -33,11 +33,6 @@
                     <p class="btext">次のステージへ</p>
                 </div>
             </RouterLink>
-            <!-- <RouterLink :to="'/game/' + nextStageID" class="RouterLink">
-                <div class="box">
-                    <p class="btext">次のステージへ</p>
-                </div>
-            </RouterLink> -->
             <RouterLink to="/menu" class="RouterLink">
                 <div class="box">
                     <p class="btext">ステージセレクトに戻る</p>
@@ -59,9 +54,6 @@ var nextButton = true
 if (props.stagedata.length <= Number(props.stageid) + 1) {
     nextButton = false
 }
-// console.log(StageData.length);
-// console.log( Number(props.stageid));
-
 const stagename = props.stagedata[props.stageid]['StageName']
 const nextStageID = String(Number(props.stageid) + 1)
 
@@ -77,9 +69,6 @@ function Restart() {
     z-index: 100;
     height: 100%;
     width: 100%;
-    /* display: flex;
-    justify-content: center; */
-    /* align-items: center; */
     background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -99,7 +88,6 @@ function Restart() {
     transform: translateX(-50%);
     height: 45%;
     width: 80%;
-    /* background-color: #000; */
 }
 
 .menus .box {
@@ -136,7 +124,6 @@ function Restart() {
 #GameStart .menus .btext {
     font-size: 4rem;
     color: white;
-    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
 
 /* ボタンの枠 */
@@ -152,7 +139,6 @@ function Restart() {
 #GameStart .menus .btext2 {
     font-size: 1.5rem;
     color: white;
-    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
 
 /* GameOver */
@@ -175,7 +161,6 @@ function Restart() {
 #GameOver .menus .btext {
     font-size: 1.4rem;
     color: white;
-    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
 
 /* StageClear */
@@ -199,6 +184,5 @@ function Restart() {
 #StageClear .menus .btext {
     font-size: 1.4rem;
     color: white;
-    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
 </style>
