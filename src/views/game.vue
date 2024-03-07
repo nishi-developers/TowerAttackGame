@@ -2,7 +2,7 @@
   <!-- <button type="button" @click="nextStep">nextStep</button> -->
   <!--  -->
   <div id="MainCanvas" :class="['background', BackgroundImage]">
-    <Overlay :step="Step" :stageid="StageID" @re="reOverlay"></Overlay>
+    <Overlay :step="Step" :stageid="StageID" :stagedata=StageData @re="reOverlay"></Overlay>
     <div id="heroPositionSys">
       <div id="hero" :style="{ 'left': HeroLeft + 'px', 'bottom': HeroBottom + 'px' }">
         <Character :CharaData="{ 'character': 'hero', 'show': HP }" />
@@ -22,18 +22,20 @@ import Character from "@/components/character.vue"
 import Tower from "@/components/tower.vue"
 import Overlay from "@/components/gameoverlay.vue"
 import StageData from "@/assets/StageData.json"
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { event } from 'vue-gtag'
 import { cloneDeep } from 'lodash'
 
 const route = useRoute()
+const router = useRouter()
 const StageID = route.params.stageid //パラメーターからコース番号を取得
 
 // 無いコースを指定された場合は404
 // リロードせずにリダイレクトするとエラーを吐いて止まるため、js標準のリダイレクトで
-if (!(StageData[StageID])) {
-  location.href = "/404"
-}
+// if (!(StageData[StageID])) {
+//   // location.href = "/404"
+//   router.push("/404")
+// }
 
 const Stage = ref()
 const BackgroundImage = ref()
@@ -49,7 +51,6 @@ StepList = [
   "StageClear"
 ]
 */
-
 const TowerNum = ref()
 const Tower1 = ref()
 const Tower2 = ref()

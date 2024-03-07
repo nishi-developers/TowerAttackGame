@@ -20,7 +20,7 @@
                     <p class="btext">ステージセレクトに戻る</p>
                 </div>
             </RouterLink>
-            <div class="box" @click="Restart()">
+            <div class="box" @click="Action('restart')">
                 <p class="btext">やり直す</p>
             </div>
         </div>
@@ -50,25 +50,19 @@
     </div>
 </template>
 <script setup>
-import StageData from "@/assets/StageData.json"
-import { useRoute, useRouter } from 'vue-router'
-const route = useRoute()
-const router = useRouter()
-
-
-const props = defineProps(["step", "stageid"]) //親コンポーネントからデータなどを取得
+const props = defineProps(["step", "stageid","stagedata"]) //親コンポーネントからデータなどを取得
 const emit = defineEmits(["re"]) //親コンポーネントから返答用の要素を取得
 function Action(action) { // タワーのクリックした位置を親コンポーネントに送信
     emit("re", action)
 }
 var nextButton = true
-if (StageData.length <= Number(props.stageid) + 1) {
+if (props.stagedata.length <= Number(props.stageid) + 1) {
     nextButton = false
 }
 // console.log(StageData.length);
 // console.log( Number(props.stageid));
 
-const stagename = StageData[props.stageid]['StageName']
+const stagename = props.stagedata[props.stageid]['StageName']
 const nextStageID = String(Number(props.stageid) + 1)
 
 </script>
