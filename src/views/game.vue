@@ -24,6 +24,7 @@ import Overlay from "@/components/gameoverlay.vue"
 import StageData from "@/assets/StageData.json"
 import { useRoute } from 'vue-router'
 import { event } from 'vue-gtag'
+import { cloneDeep } from 'lodash'
 
 const route = useRoute()
 const StageID = route.params.stageid //パラメーターからコース番号を取得
@@ -36,7 +37,7 @@ if (!(StageData[StageID])) {
 }
 
 // const Stage = StageData[StageID]["Stage"]
-const Stage = ref(StageData[StageID])
+const Stage = ref(cloneDeep(StageData[StageID]))
 
 
 
@@ -118,7 +119,7 @@ function ClickChara(Floor) {
   Stage.value["Stage"][TowerNum.value + 1][Floor]["show"] = ""
   Stage.value["Stage"][TowerNum.value + 1][Floor]["formula"] = ""
   Stage.value["Stage"][TowerNum.value + 1][Floor]["power"] = ""
-  console.log(Stage.value["Stage"]);
+  // console.log(Stage.value["Stage"]);
   // key2.value = key2.value == 3 ? 2 : 3 //塔2を明示的に再描画
   // プレイヤーの移動
   var UnderFloor = Stage.value["Stage"][TowerNum.value + 1].length - Floor
@@ -170,7 +171,7 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
       // for (let index = 0; index < 100; index++) {}
       var selectednum = Math.floor(Math.random() * Power.length)
       var selected = Power[selectednum]
-      console.log(selected);
+      // console.log(selected);
       Calc(selected["power"], selected["formula"])
       // console.log(selectednum);
       break
