@@ -5,7 +5,7 @@ const router = createRouter({
     routes: [
         {
             path: "/",
-            name: "top",
+            name: "Top",
             component: () => import("@/views/top.vue"),
         },
         {

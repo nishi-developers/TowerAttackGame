@@ -23,6 +23,7 @@ import Tower from "@/components/tower.vue"
 import Overlay from "@/components/gameoverlay.vue"
 import StageData from "@/assets/StageData.json"
 import { useRoute } from 'vue-router'
+import { event } from 'vue-gtag'
 
 const route = useRoute()
 const StageID = route.params.stageid //パラメーターからコース番号を取得
@@ -89,6 +90,8 @@ HeroPossition(undefined, 1, 5)
 function reOverlay(Action) {
   if (Action == "GameStart") {
     Step.value = "PlayingGame"
+    event("StageStart")
+    event(`StageStart(${StageID})`)
   }
 }
 
@@ -102,6 +105,8 @@ function nextStep() { //次の塔を描画するように切り替え&ゴール�
   } else { //次がなければクリア
     HeroPossition(undefined, 2, 5)
     Step.value = "StageClear"
+    event("StageClear")
+    event(`StageClear(${StageID})`)
   }
 }
 
@@ -116,7 +121,12 @@ function ClickChara(Floor) {
   // プレイヤーの移動
   var UnderFloor = Stage[TowerNum.value + 1].length - Floor
   HeroPossition(undefined, 2, 100 * UnderFloor - 80)
-  checkLive() // 生きているかをチェック
+  // 生きているかをチェック 死んでいれば以降の処理は行わない
+  if (HP.value <= 0) {
+    Step.value = "GameOver"
+    event("StageMiss")
+    event(`StageMiss(${StageID})`)
+  }else{
   // 敵がいるかを確認し、塔内の全ての敵がいなければ次の塔へ
   let count = 0
   for (let i = 0; i < Stage[TowerNum.value + 1].length; i++) {
@@ -129,10 +139,6 @@ function ClickChara(Floor) {
     nextStep()
   }
 }
-function checkLive() { //プレイヤーの死をチェック
-  if (HP.value <= 0) {
-    Step.value = "GameOver"
-  }
 }
 function Calc(Power, formula) { //プレイヤーのHPを計算&適用
   // "break"忘れずに!!!
@@ -154,6 +160,9 @@ function Calc(Power, formula) { //プレイヤーのHPを計算&適用
       break
     case "sqrt":
       HP.value = Math.round(Math.pow(HP.value, 1 / Power))
+      break
+    case "mod":
+      HP.value = Math.round(HP.value%Power)
       break
     case "random":
       // for (let index = 0; index < 100; index++) {}
