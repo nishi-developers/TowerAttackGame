@@ -28,7 +28,6 @@ import { cloneDeep } from 'lodash'
 
 const route = useRoute()
 const StageID = route.params.stageid //パラメーターからコース番号を取得
-// const StageID = "01"
 
 // 無いコースを指定された場合は404
 // リロードせずにリダイレクトするとエラーを吐いて止まるため、js標準のリダイレクトで
@@ -36,21 +35,12 @@ if (!(StageData[StageID])) {
   location.href = "/404"
 }
 
-// const Stage = StageData[StageID]["Stage"]
-const Stage = ref(cloneDeep(StageData[StageID]))
-
-
-
-// 背景
-// const BackgroundImage = ref(new URL("../assets/background/"+StageData["FirstStage"]["background"], import.meta.url).pathname)
-// CSSのclass名を指定することでstyleを切り替えて背景を変える
-// 画像ファイルを直接指定する試みはvercelとの問題でできなかった
-const BackgroundImage = ref(Stage.value["BackgroundImage"])
-
-const HP = ref(Stage.value["PlayerHP"])
+const Stage = ref()
+const BackgroundImage = ref()
+const HP = ref()
 
 // 表示中の画面を管理
-const Step = ref("GameStart")
+const Step = ref()
 /*
 StepList = [
   "GameStart",
@@ -60,18 +50,9 @@ StepList = [
 ]
 */
 
-// keyによる再描画
-// 2つの塔にkey属性を追加し、そのkeyを更新することで、塔コンポーネントを明示的に再描画する
-// https://qiita.com/fuminopen/items/34eb14d6e74c3a9fcbf0
-// const key1 = ref(0) // 0 or 1
-// const key2 = ref(2) // 2 or 3
-
-const TowerNum = ref(0) //何番目の塔が描画されているか
-const Tower1 = ref("")
-const Tower2 = ref("")
-
-Tower1.value = Stage.value["Stage"][TowerNum.value]
-Tower2.value = Stage.value["Stage"][TowerNum.value + 1]
+const TowerNum = ref()
+const Tower1 = ref()
+const Tower2 = ref()
 
 // Playerの位置
 const HeroLeft = ref(0)
@@ -88,13 +69,35 @@ function HeroPossition(x, tower, y) {
   }
   HeroBottom.value = y
 }
-HeroPossition(undefined, 1, 5)
 
+// 初期化処理
+// ゲーム状況のリセット
+function init() {
+  Stage.value = cloneDeep(StageData[StageID])
+  BackgroundImage.value = StageData[StageID]["BackgroundImage"]// 背景
+  // const BackgroundImage = ref(new URL("../assets/background/"+StageData["FirstStage"]["background"], import.meta.url).pathname)
+  // CSSのclass名を指定することでstyleを切り替えて背景を変える
+  // 画像ファイルを直接指定する試みはvercelとの問題でできなかった
+  HP.value = Stage.value["PlayerHP"]
+  Step.value = "GameStart"
+  TowerNum.value = 0 //何番目の塔が描画されているか
+  Tower1.value = Stage.value["Stage"][TowerNum.value]
+  Tower2.value = Stage.value["Stage"][TowerNum.value + 1]
+  // Playerの位置
+  HeroPossition(undefined, 1, 5)
+}
+init()
+
+// Overlayからの受信
 function reOverlay(Action) {
-  if (Action == "GameStart") {
-    Step.value = "PlayingGame"
-    event("StageStart")
-    event(`StageStart(${StageID})`)
+  switch (Action) {
+    case "GameStart":
+      Step.value = "PlayingGame"
+      event("StageStart")
+      event(`StageStart(${StageID})`)
+      break
+    case "restart":
+      init()
   }
 }
 

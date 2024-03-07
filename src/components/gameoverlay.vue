@@ -43,7 +43,7 @@
                     <p class="btext">ステージセレクトに戻る</p>
                 </div>
             </RouterLink>
-            <div class="box" @click="Restart()">
+            <div class="box" @click="Action('restart')">
                 <p class="btext">やり直す</p>
             </div>
         </div>
@@ -71,9 +71,6 @@ if (StageData.length <= Number(props.stageid) + 1) {
 const stagename = StageData[props.stageid]['StageName']
 const nextStageID = String(Number(props.stageid) + 1)
 
-function Restart() {
-    router.go({ path: route.path, force: true })
-}
 </script>
 <style scoped>
 /* 全体 */
