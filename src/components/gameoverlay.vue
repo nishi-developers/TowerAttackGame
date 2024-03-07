@@ -28,11 +28,11 @@
     <div id="StageClear" class="overlay" v-if="props.step == 'StageClear'">
         <p class="title"><b>Stage Clear</b></p>
         <div class="menus">
-            <a :href="'/game/' + nextStageID" class="RouterLink" v-if="nextButton">
+            <RouterLink :to="'/game/' + nextStageID" class="RouterLink" v-if="nextButton">
                 <div class="box">
                     <p class="btext">次のステージへ</p>
                 </div>
-            </a>
+            </RouterLink>
             <!-- <RouterLink :to="'/game/' + nextStageID" class="RouterLink">
                 <div class="box">
                     <p class="btext">次のステージへ</p>
