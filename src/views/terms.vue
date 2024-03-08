@@ -16,7 +16,8 @@
           <br>
           これらのことに関して、詳しくは「ユーザーが Google パートナーのサイトやアプリを使用する際の Google
           によるデータ使用」(https://www.google.com/intl/ja/policies/privacy/partners/)をご確認ください。
-          Googleアナリティクスに関しては、「Google アナリティクス利用規約」(https://marketingplatform.google.com/about/analytics/terms/jp/)もご確認ください。
+          Googleアナリティクスに関しては、「Google
+          アナリティクス利用規約」(https://marketingplatform.google.com/about/analytics/terms/jp/)もご確認ください。
         </p>
       </div>
     </div>
@@ -57,7 +58,7 @@
   font-size: 2rem;
 }
 
-#contents{
+#contents {
   margin: 15px;
 }
 
@@ -68,5 +69,6 @@
 
 #contents .text {
   font-size: 1rem;
+  word-wrap: break-word;
 }
 </style>
