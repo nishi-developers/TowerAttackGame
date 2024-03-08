@@ -3,7 +3,7 @@
         <p id="title">404 Not Found</p>
         <p class="sub">このサイト・ステージは存在しません。</p>
         <RouterLink to="/" class="RouterLink">
-            <p class="sub">トップに戻る</p>
+            <p class="sub url">トップに戻る</p>
         </RouterLink>
     </div>
 </template>
@@ -20,5 +20,9 @@
 .sub {
     font-size: 1.5rem;
     color: #000;
+}
+
+.url {
+    text-decoration-line: underline;
 }
 </style>

@@ -20,7 +20,7 @@
                     <p class="btext">ステージセレクトに戻る</p>
                 </div>
             </RouterLink>
-            <div class="box" @click="Restart()">
+            <div class="box" @click="Action('restart')">
                 <p class="btext">やり直す</p>
             </div>
         </div>
@@ -28,47 +28,33 @@
     <div id="StageClear" class="overlay" v-if="props.step == 'StageClear'">
         <p class="title"><b>Stage Clear</b></p>
         <div class="menus">
-            <a :href="'/game/' + nextStageID" class="RouterLink" v-if="nextButton">
+            <RouterLink :to="'/game/' + nextStageID" class="RouterLink" v-if="nextButton">
                 <div class="box">
                     <p class="btext">次のステージへ</p>
                 </div>
-            </a>
-            <!-- <RouterLink :to="'/game/' + nextStageID" class="RouterLink">
-                <div class="box">
-                    <p class="btext">次のステージへ</p>
-                </div>
-            </RouterLink> -->
+            </RouterLink>
             <RouterLink to="/menu" class="RouterLink">
                 <div class="box">
                     <p class="btext">ステージセレクトに戻る</p>
                 </div>
             </RouterLink>
-            <div class="box" @click="Restart()">
+            <div class="box" @click="Action('restart')">
                 <p class="btext">やり直す</p>
             </div>
         </div>
     </div>
 </template>
 <script setup>
-import StageData from "@/assets/StageData.json"
-import { useRoute, useRouter } from 'vue-router'
-const route = useRoute()
-const router = useRouter()
-
-
-const props = defineProps(["step", "stageid"]) //親コンポーネントからデータなどを取得
+const props = defineProps(["step", "stageid", "stagedata"]) //親コンポーネントからデータなどを取得
 const emit = defineEmits(["re"]) //親コンポーネントから返答用の要素を取得
 function Action(action) { // タワーのクリックした位置を親コンポーネントに送信
     emit("re", action)
 }
 var nextButton = true
-if (StageData.length <= Number(props.stageid) + 1) {
+if (props.stagedata.length <= Number(props.stageid) + 1) {
     nextButton = false
 }
-// console.log(StageData.length);
-// console.log( Number(props.stageid));
-
-const stagename = StageData[props.stageid]['StageName']
+const stagename = props.stagedata[props.stageid]['StageName']
 const nextStageID = String(Number(props.stageid) + 1)
 
 function Restart() {
@@ -83,9 +69,6 @@ function Restart() {
     z-index: 100;
     height: 100%;
     width: 100%;
-    /* display: flex;
-    justify-content: center; */
-    /* align-items: center; */
     background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -105,7 +88,6 @@ function Restart() {
     transform: translateX(-50%);
     height: 45%;
     width: 80%;
-    /* background-color: #000; */
 }
 
 .menus .box {
@@ -142,7 +124,6 @@ function Restart() {
 #GameStart .menus .btext {
     font-size: 4rem;
     color: white;
-    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
 
 /* ボタンの枠 */
@@ -158,7 +139,6 @@ function Restart() {
 #GameStart .menus .btext2 {
     font-size: 1.5rem;
     color: white;
-    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
 
 /* GameOver */
@@ -181,7 +161,6 @@ function Restart() {
 #GameOver .menus .btext {
     font-size: 1.4rem;
     color: white;
-    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
 
 /* StageClear */
@@ -205,6 +184,5 @@ function Restart() {
 #StageClear .menus .btext {
     font-size: 1.4rem;
     color: white;
-    /* -webkit-text-stroke: 3px rgb(255, 230, 0); */
 }
 </style>

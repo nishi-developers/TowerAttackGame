@@ -2,7 +2,7 @@
   <!-- クリック時の画像を読ませることで、一回目のクリックから画像が表示されるようにする -->
   <img src="@/assets/cursor/cursor.webp" style="display: none;">
   <img src="@/assets/cursor/click.webp" style="display: none;">
-  <RouterView />
+  <RouterView :key="$route.fullPath"/>
   <Footer></Footer>
 </template>
 
@@ -13,7 +13,6 @@ import Footer from "@/components/footer.vue"
 </script>
 
 <style>
-/* @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 
 :root {
@@ -24,7 +23,6 @@ import Footer from "@/components/footer.vue"
 * {
   margin: 0;
   padding: 0;
-  /* font-family: "DotGothic16"; */
   font-family: "Noto Sans JP";
 }
 
@@ -43,5 +41,11 @@ import Footer from "@/components/footer.vue"
 
 .RouterLink {
   text-decoration: none;
+}
+
+.backgroundImage{
+  background-position-x: center;
+  background-position-y: bottom;
+  background-size: cover;
 }
 </style>
