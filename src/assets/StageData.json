@@ -1,66 +1,7 @@
 [
     {
         "StageName": "FirstStage",
-        "Description": "初心者向け",
-        "BackgroundImage": "Mounten1",
-        "PlayerHP": 100,
-        "Stage": [
-            [
-                {
-                    "option": "Base"
-                }
-            ],
-            [
-                {
-                    "character": "witch",
-                    "show": "+2",
-                    "formula": "+",
-                    "power": "2"
-                },
-                {
-                    "character": "witch",
-                    "show": "÷2",
-                    "formula": "/",
-                    "power": "2"
-                },
-                {
-                    "character": "drink",
-                    "show": "×2",
-                    "formula": "*",
-                    "power": "2"
-                },
-                {
-                    "character": "zombie",
-                    "show": "mod10",
-                    "formula": "mod",
-                    "power": 10
-                },
-                {
-                    "character": "portion",
-                    "show": "×2 or +50",
-                    "formula": "random",
-                    "power": [
-                        {
-                            "formula": "*",
-                            "power": "2"
-                        },
-                        {
-                            "formula": "+",
-                            "power": 50
-                        }
-                    ]
-                }
-            ],
-            [
-                {
-                    "option": "Goal"
-                }
-            ]
-        ]
-    },
-    {
-        "StageName": "懐かしのステージ",
-        "Description": "開発段階で使用したステージ",
+        "Description": "まずはここから",
         "BackgroundImage": "Mounten1",
         "PlayerHP": 100,
         "Stage": [
@@ -135,27 +76,318 @@
         ]
     },
     {
-        "StageName": "Second!!",
-        "Description": "aa"
+        "StageName": "Luck",
+        "Description": "運ゲー",
+        "BackgroundImage": "Mounten1",
+        "PlayerHP": 100,
+        "Stage": [
+            [
+                {
+                    "option": "Base"
+                }
+            ],
+            [
+                {
+                    "character": "witch",
+                    "show": "×2 or ÷2",
+                    "formula": "random",
+                    "power": [
+                        {
+                            "formula": "*",
+                            "power": "2"
+                        },
+                        {
+                            "formula": "/",
+                            "power": "2"
+                        }
+                    ]
+                },
+                {
+                    "character": "drink",
+                    "show": "+100",
+                    "formula": "+",
+                    "power": 100
+                },
+                {
+                    "character": "zombie",
+                    "show": "-100",
+                    "formula": "-",
+                    "power": 100
+                },
+                {
+                    "character": "portion",
+                    "show": "+99 or -99",
+                    "formula": "random",
+                    "power": [
+                        {
+                            "formula": "+",
+                            "power": 99
+                        },
+                        {
+                            "formula": "-",
+                            "power": 99
+                        }
+                    ]
+                }
+            ],
+            [
+                {
+                    "character": "dragon",
+                    "show": "÷10",
+                    "formula": "/",
+                    "power": 10
+                },
+                {
+                    "character": "drink",
+                    "show": "×10",
+                    "formula": "*",
+                    "power": 10
+                },
+                {
+                    "character": "witch",
+                    "show": "+1",
+                    "formula": "+",
+                    "power": 1
+                },
+                {
+                    "character": "witch",
+                    "show": "mod10",
+                    "formula": "mod",
+                    "power": 10
+                },
+                {
+                    "character": "portion",
+                    "show": "+10 or -20",
+                    "formula": "random",
+                    "power": [
+                        {
+                            "formula": "+",
+                            "power": 10
+                        },
+                        {
+                            "formula": "-",
+                            "power": 20
+                        }
+                    ]
+                }
+            ],
+            [
+                {
+                    "option": "Goal"
+                }
+            ]
+        ]
     },
     {
-        "StageName": "Second!!",
-        "Description": "aa"
+        "StageName": "Mathematical",
+        "Description": "難解な数学コース",
+        "BackgroundImage": "Mounten2",
+        "PlayerHP": 1000,
+        "Stage": [
+            [
+                {
+                    "option": "Base"
+                }
+            ],
+            [
+                {
+                    "character": "witch",
+                    "show": "²√n",
+                    "formula": "sqrt",
+                    "power": "2"
+                },
+                {
+                    "character": "drink",
+                    "show": "n²",
+                    "formula": "^",
+                    "power": "2"
+                },
+                {
+                    "character": "zombie",
+                    "show": "mod10",
+                    "formula": "mod",
+                    "power": 10
+                }
+            ],
+            [
+                {
+                    "character": "witch",
+                    "show": "×169",
+                    "formula": "*",
+                    "power": "169"
+                },
+                {
+                    "character": "drink",
+                    "show": "n⁰",
+                    "formula": "^",
+                    "power": 0
+                },
+                {
+                    "character": "zombie",
+                    "show": "mod13",
+                    "formula": "mod",
+                    "power": 13
+                }
+            ],
+            [
+                {
+                    "option": "Goal"
+                }
+            ]
+        ]
     },
     {
-        "StageName": "Second!!",
-        "Description": "aa"
+        "StageName": "?!!",
+        "Description": "変数の型には気をつけよう",
+        "BackgroundImage": "Mounten1",
+        "PlayerHP": 100,
+        "Stage": [
+            [
+                {
+                    "option": "Base"
+                }
+            ],
+            [
+                {
+                    "character": "witch",
+                    "show": "-1",
+                    "formula": "-",
+                    "power": 1
+                },
+                {
+                    "character": "drink",
+                    "show": "+1",
+                    "formula": "+",
+                    "power": "1"
+                },
+                {
+                    "character": "zombie",
+                    "show": "+10",
+                    "formula": "+",
+                    "power": "10"
+                }
+            ],
+            [
+                {
+                    "option": "Goal"
+                }
+            ]
+        ]
     },
     {
-        "StageName": "Second!!",
-        "Description": "aa"
-    },
-    {
-        "StageName": "Second!!",
-        "Description": "aa"
-    },
-    {
-        "StageName": "Second!!",
-        "Description": "aa"
+        "StageName": "Thank you for playing!",
+        "Description": "お疲れ様でした！",
+        "BackgroundImage": "Mounten3",
+        "PlayerHP": 1,
+        "Stage": [
+            [
+                {
+                    "option": "Base"
+                }
+            ],
+            [
+                {
+                    "character": "portion",
+                    "show": "このコースは",
+                    "formula": "+",
+                    "power": 0
+                },
+                {
+                    "character": "portion",
+                    "show": "新歓のために",
+                    "formula": "+",
+                    "power": 0
+                },
+                {
+                    "character": "portion",
+                    "show": "1から",
+                    "formula": "+",
+                    "power": 0
+                },
+                {
+                    "character": "portion",
+                    "show": "作成されました",
+                    "formula": "+",
+                    "power": 0
+                }
+            ],
+            [
+                {
+                    "character": "portion",
+                    "show": "プログラミング",
+                    "formula": "+",
+                    "power": 0
+                },
+                {
+                    "character": "portion",
+                    "show": "サークル",
+                    "formula": "+",
+                    "power": 0
+                },
+                {
+                    "character": "portion",
+                    "show": "504は",
+                    "formula": "+",
+                    "power": 0
+                },
+                {
+                    "character": "portion",
+                    "show": "こんなゲームも",
+                    "formula": "+",
+                    "power": 0
+                },
+                {
+                    "character": "portion",
+                    "show": "(ゲーム性はない)",
+                    "formula": "+",
+                    "power": 0
+                },
+                {
+                    "character": "portion",
+                    "show": "作れるよ",
+                    "formula": "+",
+                    "power": 0
+                }
+            ],
+            [
+                {
+                    "character": "portion",
+                    "show": "ぜひ",
+                    "formula": "^",
+                    "power": 0
+                },
+                {
+                    "character": "portion",
+                    "show": "入部",
+                    "formula": "+",
+                    "power": 100
+                },
+                {
+                    "character": "portion",
+                    "show": "してね!",
+                    "formula": "^",
+                    "power": 0
+                }
+            ],
+            [
+                {
+                    "character": "dragon",
+                    "show": "このコース",
+                    "formula": "-",
+                    "power": 50
+                },
+                {
+                    "character": "dragon",
+                    "show": "クリアできる?",
+                    "formula": "-",
+                    "power": 50
+                }
+            ],
+            [
+                {
+                    "option": "Goal"
+                }
+            ]
+        ]
     }
 ]

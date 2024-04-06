@@ -10,7 +10,6 @@
     </div>
     <div id="credit">
       <p id="main">created by <b>504</b> </p><br>
-      <!-- <p id="sub">supported by <b>数学研究同好会</b></p> -->
     </div>
   </div>
 </template>
