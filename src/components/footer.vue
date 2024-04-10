@@ -9,7 +9,8 @@
       </RouterLink>
     </div>
     <div id="credit">
-      <p id="main">created by <b>504</b> </p><br>
+      <a href="https://504hp.vercel.app/" target="_blank" rel="noopener noreferrer" id="main">created by <b>504</b>
+      </a><br>
     </div>
   </div>
 </template>
@@ -34,9 +35,10 @@
   transform: translate(0, -50%)
 }
 
-#Footer #credit p {
+#Footer #credit a {
   color: white;
   display: inline-block;
+  text-decoration: none;
 }
 
 #Footer #credit #main {
