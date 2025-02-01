@@ -24,7 +24,7 @@
 
 ## ライセンス
 
-[GNU General Public License v3.0](https://github.com/nishi-developers/TowerAttackGame/blob/main/LICENSE)
+[MIT License](https://github.com/nishi-developers/TowerAttackGame/blob/main/LICENSE)
 
 ## 実行環境
 
